@@ -1,0 +1,132 @@
+import React from 'react';
+import { SectionHeader } from '../common/SectionHeader';
+import { 
+  Sparkles, 
+  CheckCircle2, 
+  ArrowRight, 
+  Layers, 
+  Maximize, 
+  ShieldCheck, 
+  Palette 
+} from 'lucide-react';
+import { companyConfig } from '../../config/company';
+
+interface ModularKitchenFeatureProps {
+  onOpenConsultation: () => void;
+}
+
+export const ModularKitchenFeature: React.FC<ModularKitchenFeatureProps> = ({ onOpenConsultation }) => {
+  const highlights = [
+    {
+      title: 'SMART LAYOUT',
+      desc: 'Ergonomic golden-triangle workflow engineered for seamless prep, cook, and wash zones.',
+      icon: <Maximize className="w-5 h-5 text-brand-copper" />
+    },
+    {
+      title: 'PREMIUM MATERIALS',
+      desc: 'BWP Grade Marine Plywood, quartz composite counters, and scratch-resistant acrylic shutters.',
+      icon: <Layers className="w-5 h-5 text-brand-copper" />
+    },
+    {
+      title: 'AMPLE STORAGE',
+      desc: 'Deep pull-out pantries, blind-corner carousels, and concealed cutlery organizers.',
+      icon: <Sparkles className="w-5 h-5 text-brand-copper" />
+    },
+    {
+      title: 'MODERN DESIGNS',
+      desc: 'Sleek handleless profiles, fluted wood accents, and warm ambient LED under-cabinet illumination.',
+      icon: <Palette className="w-5 h-5 text-brand-copper" />
+    },
+    {
+      title: 'DURABLE & LONG LASTING',
+      desc: 'German soft-close hinges, moisture-sealed edges, and heavy-duty drawer runners.',
+      icon: <ShieldCheck className="w-5 h-5 text-brand-copper" />
+    }
+  ];
+
+  return (
+    <section id="kitchen" className="py-20 sm:py-28 bg-brand-ivory relative overflow-hidden border-t border-brand-border/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          
+          {/* Left Column: Image Composition matching img7 */}
+          <div className="lg:col-span-6 relative order-2 lg:order-1">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-brand-border group bg-white">
+              <img
+                src="/assets/creatives/img7.jpeg"
+                alt="Customized Modular Kitchen by Capsule Company"
+                className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-700 max-h-[600px]"
+                loading="lazy"
+              />
+
+              {/* Overlay Badge */}
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 glass-panel-dark rounded-xl px-4 py-2.5 text-white shadow-lg">
+                <span className="text-[10px] uppercase tracking-widest text-brand-copper font-bold block">
+                  Bengaluru Living
+                </span>
+                <span className="text-xs font-semibold text-white">
+                  Better Spaces. Brighter Living.
+                </span>
+              </div>
+            </div>
+
+            {/* Copper Line Anchor */}
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 border-b-2 border-r-2 border-brand-copper/50 rounded-br-2xl pointer-events-none hidden sm:block" />
+          </div>
+
+          {/* Right Column: Copy & Feature Points */}
+          <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
+            <SectionHeader
+              label="BETTER SPACES. BRIGHTER LIVING."
+              title="CUSTOMIZED"
+              highlight="MODULAR KITCHENS"
+              subtitle="Designed for your lifestyle. Built for everyday comfort. We engineer kitchens that balance culinary precision, durable engineering, and modern elegance."
+            />
+
+            {/* Feature Cards */}
+            <div className="space-y-3.5 pt-1">
+              {highlights.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-3.5 sm:p-4 rounded-xl bg-white border border-brand-border hover:border-brand-copper/40 transition-all flex items-start gap-4 shadow-2xs"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-brand-cream border border-brand-border flex items-center justify-center shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold tracking-wider uppercase text-brand-black">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs text-brand-muted mt-0.5 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Consultation Trigger */}
+            <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <button
+                onClick={onOpenConsultation}
+                className="px-7 py-3.5 bg-brand-copper hover:bg-brand-copperDark text-white text-xs sm:text-sm font-bold tracking-widest uppercase rounded-full shadow-lg active:scale-95 transition-all text-center flex items-center justify-center gap-2"
+              >
+                <span>GET FREE KITCHEN CONSULTATION</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href={`tel:${companyConfig.phoneRaw}`}
+                className="px-5 py-3.5 bg-brand-cream hover:bg-white text-brand-black border border-brand-border hover:border-brand-copper text-xs font-bold tracking-widest uppercase rounded-full transition-all text-center"
+              >
+                CALL +91 96321 24422
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
