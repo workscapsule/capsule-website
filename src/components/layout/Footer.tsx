@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, MapPin, Mail, Instagram, Facebook, Globe, Youtube, ArrowUp } from 'lucide-react';
 import { companyConfig } from '../../config/company';
 
@@ -11,6 +12,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navLinks = [
+    { label: 'Home', to: '/' },
+    { label: 'About Us', to: '/about' },
+    { label: 'Services', to: '/services' },
+    { label: 'Process', to: '/process' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'Gallery', to: '/gallery' },
+    { label: 'Why Capsule', to: '/why-capsule' },
+    { label: 'FAQ', to: '/faq' },
+    { label: 'Contact', to: '/contact' },
+  ];
+
+  const serviceLinks = [
+    { label: 'Construction & Civil Works', to: '/services' },
+    { label: 'Turnkey Interior Design', to: '/services' },
+    { label: 'Modular Kitchens & Closets', to: '/services' },
+    { label: 'Expert Carpentry & Millwork', to: '/services' },
+    { label: 'Exterior & Facade Works', to: '/services' },
+    { label: 'Renovation & Upgradation', to: '/services' },
+    { label: 'Electrical & Smart Automation', to: '/services' },
+    { label: 'Flooring, Tiles & Finishes', to: '/services' },
+  ];
+
   return (
     <footer className="bg-brand-black text-white pt-16 pb-12 border-t border-brand-borderDark relative overflow-hidden">
       {/* Subtle architectural ambient background glow */}
@@ -18,23 +42,24 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-white/10">
-          {/* Brand Column (2 cols wide on desktop) */}
+          
+          {/* Brand Column */}
           <div className="lg:col-span-2 space-y-5">
-            {/* Original Provided Logo Frame */}
-            <div className="inline-block bg-brand-ivory p-2.5 rounded-lg border border-brand-copper/30 shadow-md">
+            {/* Logo */}
+            <Link to="/" className="inline-block bg-brand-ivory p-2.5 rounded-lg border border-brand-copper/30 shadow-md">
               <img
                 src="/assets/logo.jpeg"
                 alt="Capsule Company - Your Space Maker Official Logo"
-                className="h-16 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
-            </div>
+            </Link>
 
             <p className="text-sm text-gray-300 max-w-sm leading-relaxed">
-              Bengaluru-based construction, interiors, and exteriors company creating spaces that are thoughtfully designed, professionally executed, and built to last.
+              Bengaluru-based construction, turnkey interiors, and exterior engineering company creating spaces that are thoughtfully designed, professionally executed, and built to endure.
             </p>
 
             <div className="pt-2">
-              <span className="inline-block text-xs font-bold tracking-widest text-brand-copper uppercase mb-2">
+              <span className="inline-block text-xs font-bold tracking-widest text-brand-copper uppercase mb-1.5">
                 Direct Line & WhatsApp
               </span>
               <a
@@ -55,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                   href={companyConfig.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -64,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                   href={companyConfig.socialLinks.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -73,7 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                   href={companyConfig.socialLinks.google}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
                   aria-label="Google Business"
                 >
                   <Globe className="w-4 h-4" />
@@ -82,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                   href={companyConfig.socialLinks.threads}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all text-xs font-bold"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all text-xs font-bold"
                   aria-label="Threads"
                 >
                   @
@@ -91,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                   href={companyConfig.socialLinks.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-copper hover:border-brand-copper transition-all"
                   aria-label="YouTube"
                 >
                   <Youtube className="w-4 h-4" />
@@ -100,84 +125,49 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
             </div>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Dedicated Navigation Pages */}
           <div>
             <h4 className="text-xs font-bold tracking-widest text-brand-copper uppercase mb-4">
-              Navigation
+              Dedicated Pages
             </h4>
             <ul className="space-y-2.5 text-sm text-gray-300">
-              {['Home', 'About Us', 'Services', 'Process', 'Projects', 'Why Capsule', 'FAQ', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+              {navLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
                     className="hover:text-brand-copper transition-colors"
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services Column */}
+          {/* 8 Services Column */}
           <div>
             <h4 className="text-xs font-bold tracking-widest text-brand-copper uppercase mb-4">
-              Our Services
+              Our 8 Services
             </h4>
-            <ul className="space-y-2.5 text-sm text-gray-300">
-              <li>
-                <a href="#services" className="hover:text-brand-copper transition-colors">
-                  Construction & Civil
-                </a>
-              </li>
-              <li>
-                <a href="#interiors" className="hover:text-brand-copper transition-colors">
-                  Turnkey Interiors
-                </a>
-              </li>
-              <li>
-                <a href="#kitchen" className="hover:text-brand-copper transition-colors">
-                  Modular Kitchens
-                </a>
-              </li>
-              <li>
-                <a href="#carpentry" className="hover:text-brand-copper transition-colors">
-                  Expert Carpentry
-                </a>
-              </li>
-              <li>
-                <a href="#exteriors" className="hover:text-brand-copper transition-colors">
-                  Exterior & Facade
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-brand-copper transition-colors">
-                  Renovation & Upgradation
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-brand-copper transition-colors">
-                  Electrical & Plumbing
-                </a>
-              </li>
-              {companyConfig.features.enableRealEstate && (
-                <li>
-                  <span className="text-xs px-2 py-0.5 rounded bg-brand-copper/20 text-brand-copper">
-                    Real Estate Advisory
-                  </span>
+            <ul className="space-y-2 text-xs sm:text-sm text-gray-300">
+              {serviceLinks.map((srv, idx) => (
+                <li key={idx}>
+                  <Link to={srv.to} className="hover:text-brand-copper transition-colors">
+                    {srv.label}
+                  </Link>
                 </li>
-              )}
+              ))}
             </ul>
           </div>
 
-          {/* Office & Consultation */}
+          {/* Bengaluru Office & Quick Action */}
           <div>
             <h4 className="text-xs font-bold tracking-widest text-brand-copper uppercase mb-4">
               Bengaluru Office
             </h4>
-            <div className="space-y-3 text-sm text-gray-300">
+            <div className="space-y-3 text-xs sm:text-sm text-gray-300">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-brand-copper shrink-0 mt-1" />
+                <MapPin className="w-4 h-4 text-brand-copper shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
                   {companyConfig.addressFull}
                 </span>
@@ -199,22 +189,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
             <div className="pt-4">
               <button
                 onClick={onOpenConsultation}
-                className="w-full py-2.5 px-4 bg-brand-copper hover:bg-brand-copperLight text-white text-xs font-bold tracking-widest uppercase rounded-lg transition-all text-center"
+                className="w-full py-2.5 px-4 bg-brand-copper hover:bg-brand-copperLight text-white text-xs font-bold tracking-widest uppercase rounded-lg transition-all text-center cursor-pointer shadow-sm"
               >
                 REQUEST FREE VISIT
               </button>
             </div>
           </div>
+
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <p>© {new Date().getFullYear()} CAPSULE COMPANY. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-6">
             <span className="text-brand-copper font-medium">YOUR SPACE MAKER</span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
               aria-label="Scroll back to top"
             >
               <span>Back to top</span>

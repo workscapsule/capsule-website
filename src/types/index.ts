@@ -63,3 +63,15 @@ export interface ChatMessage {
     payload?: string;
   }>;
 }
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category: string;
+  location: string;
+  image: string;
+  description: string;
+  tags?: string[];
+  featured?: boolean;
+}
+
