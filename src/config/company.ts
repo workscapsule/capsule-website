@@ -36,7 +36,7 @@ export const companyConfig: CompanyConfig = {
   phoneRaw: '+919632124422',
   whatsappNumber: '919632124422',
   whatsappMessage: 'Hi Capsule Company, I would like to discuss my project and get a free consultation.',
-  email: 'contact@capsulecompany.in',
+  email: 'Workscapsule@gmail.com',
   addressShort: 'Hebbal Kempapura, Bengaluru, Karnataka',
   addressFull: 'SLV COMPLEX, 17/3, Outer Ring Rd, Kariyana Layout, Hebbal Kempapura, Bengaluru, Karnataka 560024',
   city: 'Bengaluru',

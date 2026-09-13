@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  Building2, 
-  LayoutGrid, 
-  ChefHat, 
-  Hammer, 
-  Building, 
-  Sparkles, 
-  Zap, 
-  Grid, 
-  CheckCircle2, 
-  ArrowRight, 
-  ShieldCheck, 
-  Clock, 
-  Award, 
-  PhoneCall 
+import {
+  Building2,
+  LayoutGrid,
+  ChefHat,
+  Hammer,
+  Building,
+  Sparkles,
+  Zap,
+  Grid,
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Award,
+  PhoneCall
 } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { ServiceItem } from '../types';
@@ -94,11 +94,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation }
             <button
               key={tab.key}
               onClick={() => setActiveFilter(tab.key as any)}
-              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                activeFilter === tab.key
+              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${activeFilter === tab.key
                   ? 'bg-brand-black text-white shadow-sm'
                   : 'text-brand-black/80 hover:text-brand-copper hover:bg-brand-cream'
-              }`}
+                }`}
             >
               {tab.label}
             </button>
@@ -112,9 +111,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation }
           <div
             key={srv.id}
             id={srv.id}
-            className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-white rounded-3xl p-6 sm:p-10 border border-brand-border shadow-md hover:shadow-xl transition-all duration-300 ${
-              idx % 2 === 1 ? 'lg:grid-flow-dense' : ''
-            }`}
+            className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-white rounded-3xl p-6 sm:p-10 border border-brand-border shadow-md hover:shadow-xl transition-all duration-300 ${idx % 2 === 1 ? 'lg:grid-flow-dense' : ''
+              }`}
           >
             {/* Visual Column */}
             <div className={`lg:col-span-5 relative ${idx % 2 === 1 ? 'lg:col-start-8' : ''}`}>

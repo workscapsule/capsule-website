@@ -30,7 +30,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
     { label: 'ABOUT US', to: '/about' },
     { label: 'SERVICES', to: '/services' },
     { label: 'PROCESS', to: '/process' },
-    { label: 'PROJECTS', to: '/projects' },
     { label: 'GALLERY', to: '/gallery' },
     { label: 'WHY CAPSULE', to: '/why-capsule' },
     { label: 'FAQ', to: '/faq' },
@@ -40,41 +39,39 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'glass-panel shadow-sm py-2 sm:py-2.5'
-            : 'bg-brand-ivory/95 backdrop-blur-md py-2.5 sm:py-3.5 border-b border-brand-border/60'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+            ? 'glass-panel shadow-sm py-1.5 sm:py-2'
+            : 'bg-brand-ivory/95 backdrop-blur-md py-2 sm:py-3 border-b border-brand-border/60'
+          }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          
-          {/* Brand Logo */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 sm:gap-4">
+
+          {/* Brand Logo - Noticeably bigger & responsive while maintaining aspect ratio and balanced header */}
           <Link
             to="/"
             className="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-copper rounded-lg"
             aria-label="Capsule Company Home"
           >
-            <div className="h-11 sm:h-13 md:h-14 w-auto overflow-hidden rounded-md bg-white flex items-center p-1 border border-brand-border/60 hover:border-brand-copper transition-colors shadow-2xs">
+            <div className="h-11 sm:h-13 md:h-16 lg:h-18 xl:h-20 w-auto overflow-hidden rounded-lg bg-white flex items-center justify-center p-1 sm:p-1.5 border border-brand-border/60 hover:border-brand-copper transition-all shadow-xs">
               <img
                 src="/assets/logo.jpeg"
                 alt="Capsule Company - Your Space Maker Official Logo"
-                className="h-full w-auto object-contain max-h-11 sm:max-h-13 md:max-h-14"
+                className="h-full w-auto object-contain max-h-11 sm:max-h-13 md:max-h-16 lg:max-h-18 xl:max-h-20"
               />
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-5 2xl:space-x-6" aria-label="Main Navigation">
+          <nav className="hidden xl:flex items-center space-x-5 2xl:space-x-7" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <NavLink
                 key={link.label}
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `text-[11px] 2xl:text-xs font-bold tracking-widest uppercase transition-all py-1 relative whitespace-nowrap cursor-pointer ${
-                    isActive
-                      ? 'text-brand-copper font-extrabold after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-copper'
-                      : 'text-brand-black/85 hover:text-brand-copper after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand-copper hover:after:w-full after:transition-all after:duration-200'
+                  `text-[11px] 2xl:text-xs font-bold tracking-widest uppercase transition-all py-1 relative whitespace-nowrap cursor-pointer ${isActive
+                    ? 'text-brand-copper font-extrabold after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-copper'
+                    : 'text-brand-black/85 hover:text-brand-copper after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand-copper hover:after:w-full after:transition-all after:duration-200'
                   }`
                 }
               >
@@ -95,12 +92,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               <span className="xl:hidden">Call</span>
             </a>
 
-            <button
-              onClick={onOpenConsultation}
-              className="px-4 py-2 bg-brand-black text-white hover:bg-brand-copper text-[11px] xl:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 shadow-sm hover:shadow active:scale-95 cursor-pointer whitespace-nowrap"
+            <a
+              href="mailto:Workscapsule@gmail.com"
+              className="px-4 py-2 bg-brand-black text-white hover:bg-brand-copper text-[11px] xl:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 shadow-sm hover:shadow active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center justify-center"
             >
               FREE CONSULTATION
-            </button>
+            </a>
           </div>
 
           {/* Mobile / Tablet Right Controls */}
@@ -129,9 +126,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
       {/* Mobile Drawer Navigation */}
       <div
-        className={`fixed inset-0 z-50 xl:hidden transition-opacity duration-300 ${
-          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-50 xl:hidden transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         {/* Backdrop */}
         <div
@@ -141,9 +137,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
         {/* Drawer Panel */}
         <div
-          className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-brand-ivory shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out overflow-y-auto ${
-            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-brand-ivory shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out overflow-y-auto ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
         >
           <div>
             {/* Header in Drawer */}
@@ -173,10 +168,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                   end={link.to === '/'}
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `px-3.5 py-2.5 text-sm font-bold tracking-wider uppercase rounded-xl transition-all flex items-center justify-between ${
-                      isActive
-                        ? 'bg-brand-black text-brand-copper shadow-sm pl-4'
-                        : 'text-brand-black hover:text-brand-copper hover:bg-brand-cream/80'
+                    `px-3.5 py-2.5 text-sm font-bold tracking-wider uppercase rounded-xl transition-all flex items-center justify-between ${isActive
+                      ? 'bg-brand-black text-brand-copper shadow-sm pl-4'
+                      : 'text-brand-black hover:text-brand-copper hover:bg-brand-cream/80'
                     }`
                   }
                 >
@@ -189,15 +183,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
           {/* Drawer Footer Actions */}
           <div className="pt-6 border-t border-brand-border space-y-3 mt-6">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenConsultation();
-              }}
-              className="w-full py-3.5 bg-brand-copper text-white text-xs font-bold tracking-widest uppercase rounded-full shadow-md active:scale-95 transition-all text-center cursor-pointer"
+            <a
+              href="mailto:Workscapsule@gmail.com"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-3.5 bg-brand-copper text-white text-xs font-bold tracking-widest uppercase rounded-full shadow-md active:scale-95 transition-all text-center cursor-pointer inline-flex items-center justify-center"
             >
               GET FREE CONSULTATION
-            </button>
+            </a>
 
             <div className="grid grid-cols-2 gap-2 pt-1">
               <a

@@ -52,11 +52,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject, onO
               <button
                 key={cat.value}
                 onClick={() => setSelectedFilter(cat.value)}
-                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                  selectedFilter === cat.value
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${selectedFilter === cat.value
                     ? 'bg-brand-black text-white shadow-sm'
                     : 'text-brand-black/80 hover:text-brand-copper hover:bg-brand-cream'
-                }`}
+                  }`}
               >
                 {cat.label}
               </button>
@@ -91,7 +90,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject, onO
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/70 via-transparent to-transparent" />
-                
+
                 {/* Category Pill */}
                 <div className="absolute top-4 left-4">
                   <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-brand-black/85 text-white backdrop-blur-xs border border-white/20">

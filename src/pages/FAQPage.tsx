@@ -44,7 +44,7 @@ export const FAQPage: React.FC = () => {
       {/* Search & Category Filter Bar */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
         <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-lg border border-brand-border space-y-4">
-          
+
           {/* Search Input */}
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-muted" />
@@ -63,11 +63,10 @@ export const FAQPage: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                  selectedCategory === cat
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${selectedCategory === cat
                     ? 'bg-brand-black text-white shadow-xs'
                     : 'bg-brand-ivory hover:bg-brand-cream text-brand-black/80 border border-brand-border/60'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -93,9 +92,8 @@ export const FAQPage: React.FC = () => {
                   <span className="font-display text-sm sm:text-base font-bold text-brand-black uppercase leading-snug">
                     {faq.question}
                   </span>
-                  <div className={`w-8 h-8 rounded-full bg-brand-ivory border border-brand-border flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                    openIndex === idx ? 'rotate-180 bg-brand-copper text-white border-brand-copper' : 'text-brand-muted'
-                  }`}>
+                  <div className={`w-8 h-8 rounded-full bg-brand-ivory border border-brand-border flex items-center justify-center shrink-0 transition-transform duration-300 ${openIndex === idx ? 'rotate-180 bg-brand-copper text-white border-brand-copper' : 'text-brand-muted'
+                    }`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>

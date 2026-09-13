@@ -17,7 +17,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
     { label: 'About Us', to: '/about' },
     { label: 'Services', to: '/services' },
     { label: 'Process', to: '/process' },
-    { label: 'Projects', to: '/projects' },
     { label: 'Gallery', to: '/gallery' },
     { label: 'Why Capsule', to: '/why-capsule' },
     { label: 'FAQ', to: '/faq' },

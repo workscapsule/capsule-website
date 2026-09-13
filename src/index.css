@@ -11,24 +11,42 @@
   body {
     background-color: #F7F3ED;
     color: #0A0A0A;
-    overflow-x: hidden;
+    overflow-x: clip;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  /* Custom subtle scrollbar */
-  ::-webkit-scrollbar {
+  /* Custom subtle scrollbar for document */
+  html::-webkit-scrollbar {
     width: 8px;
+    height: 6px;
   }
-  ::-webkit-scrollbar-track {
+
+  html::-webkit-scrollbar-track {
     background: #F2ECE1;
   }
-  ::-webkit-scrollbar-thumb {
+
+  html::-webkit-scrollbar-thumb {
     background: #CE7F53;
     border-radius: 4px;
   }
-  ::-webkit-scrollbar-thumb:hover {
+
+  html::-webkit-scrollbar-thumb:hover {
     background: #B86D43;
   }
+}
+
+/* Hide scrollbar utilities */
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scrollbar-none,
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 
 /* Glassmorphism 2.0 */
@@ -75,7 +93,9 @@
   justify-content: center;
   gap: 12px;
 }
-.copper-divider::before, .copper-divider::after {
+
+.copper-divider::before,
+.copper-divider::after {
   content: '';
   height: 1px;
   flex: 1;
@@ -88,6 +108,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -99,7 +120,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

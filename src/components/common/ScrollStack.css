@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Pixel-Perfect GPU-Accelerated Scroll Stack Styles
+   ========================================================================== */
+
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-stack-inner {
+  position: relative;
+  width: 100%;
+  padding: 1rem 0 3rem;
+}
+
+/* Individual Card Wrapper - Managed by CSS position: sticky for 0-jitter pinning */
+.scroll-stack-card-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+.scroll-stack-card-wrapper:last-child,
+.scroll-stack-card-wrapper:last-of-type {
+  margin-bottom: 0 !important;
+}
+
+/* Inner Card - Handles 3D hardware-accelerated scaling & depth shadows */
+.scroll-stack-card {
+  transform-origin: top center;
+  will-change: transform, filter, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 28px;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  box-shadow: 
+    0 -4px 20px -2px rgba(0, 0, 0, 0.05),
+    0 16px 36px -6px rgba(0, 0, 0, 0.1),
+    0 30px 60px -12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.2s ease, 
+              opacity 0.2s ease,
+              box-shadow 0.25s ease;
+}
+
+/* Smooth active stacking shadow */
+.scroll-stack-card.is-stacked {
+  box-shadow: 
+    0 -8px 25px -4px rgba(0, 0, 0, 0.12),
+    0 24px 48px -8px rgba(0, 0, 0, 0.14),
+    0 40px 80px -16px rgba(0, 0, 0, 0.09);
+}
+
+/* End Spacer to allow clean stack release */
+.scroll-stack-end {
+  width: 100%;
+  height: 48px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .scroll-stack-card {
+    border-radius: 20px;
+    box-shadow: 
+      0 -2px 14px -2px rgba(0, 0, 0, 0.06),
+      0 10px 24px -4px rgba(0, 0, 0, 0.1);
+  }
+}

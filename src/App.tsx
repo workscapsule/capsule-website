@@ -25,17 +25,12 @@ export const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   const scrollToConsultation = () => {
-    const el = document.getElementById('consultation');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.location.href = '/contact#consultation';
-    }
+    window.location.href = 'mailto:Workscapsule@gmail.com';
   };
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-black relative selection:bg-brand-copper selection:text-white">
+      <div className="min-h-screen w-full flex flex-col bg-brand-ivory text-brand-black relative selection:bg-brand-copper selection:text-white overflow-x-clip">
         {/* Scroll To Top on Route Changes */}
         <ScrollToTop />
 

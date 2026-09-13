@@ -32,7 +32,7 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
         {/* Contact Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
+
           {/* Phone & WhatsApp Card */}
           <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-brand-border flex flex-col justify-between space-y-4">
             <div>
