@@ -20,12 +20,17 @@ import { GalleryPage } from './pages/GalleryPage';
 import { WhyCapsulePage } from './pages/WhyCapsulePage';
 import { FAQPage } from './pages/FAQPage';
 import { ContactPage } from './pages/ContactPage';
+import { openGmail, EmailOptions } from './utils/mail';
 
 export const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
-  const scrollToConsultation = () => {
-    window.location.href = 'mailto:Workscapsule@gmail.com';
+  const scrollToConsultation = (arg?: EmailOptions | unknown) => {
+    if (arg && typeof arg === 'object' && ('subject' in arg || 'body' in arg || 'to' in arg)) {
+      openGmail(arg as EmailOptions);
+    } else {
+      openGmail();
+    }
   };
 
   return (

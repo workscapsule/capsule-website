@@ -10,7 +10,7 @@ import { homeServicesCategories, HomeServiceCategory } from '../../data/homeServ
 import StackingCards, { StackingCardItem } from '@/components/ui/stacking-cards';
 
 interface EightCategoriesGridProps {
-  onOpenConsultation: () => void;
+  onOpenConsultation: (options?: { subject?: string; body?: string }) => void;
   showAllDetails?: boolean;
 }
 
@@ -225,7 +225,12 @@ export const EightCategoriesGrid: React.FC<EightCategoriesGridProps> = ({
                   {/* Bottom Action CTAs */}
                   <div className="pt-1 flex flex-wrap items-center gap-2.5">
                     <button
-                      onClick={onOpenConsultation}
+                      onClick={() =>
+                        onOpenConsultation({
+                          subject: `Free Estimate Request for ${srv.title} - Capsule Company`,
+                          body: `Hi Capsule Company Team,\n\nI would like to get a free estimate for ${srv.title}.\n\nProject Details:\n• Name: \n• Phone Number: \n• Project Location in Bengaluru: \n• Requirements: \n\nLooking forward to hearing from you.\n\nThank you!`,
+                        })
+                      }
                       className="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-brand-black hover:bg-brand-copper text-white text-xs font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer shadow-xs active:scale-95 text-center"
                     >
                       GET FREE ESTIMATE
@@ -301,7 +306,11 @@ export const EightCategoriesGrid: React.FC<EightCategoriesGridProps> = ({
           </div>
 
           <button
-            onClick={onOpenConsultation}
+            onClick={() =>
+              onOpenConsultation({
+                subject: 'Request Combined Estimate (Construction + Interiors) - Capsule Company',
+              })
+            }
             className="px-7 py-3.5 bg-brand-copper hover:bg-brand-copperLight text-white text-xs font-bold tracking-widest uppercase rounded-full shadow-lg transition-all duration-300 whitespace-nowrap active:scale-95 cursor-pointer"
           >
             REQUEST COMBINED ESTIMATE
@@ -374,8 +383,8 @@ export const EightCategoriesGrid: React.FC<EightCategoriesGridProps> = ({
               />
             </div>
 
-            <h4 className="text-xs font-bold tracking-widest text-brand-black uppercase mb-3">
-              WHAT IS INCLUDED IN THIS CATEGORY:
+            <h4 className="text-xs font-bold tracking-widest uppercase text-brand-copper mb-3">
+              Included Deliverables & Quality Standards
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
@@ -397,8 +406,11 @@ export const EightCategoriesGrid: React.FC<EightCategoriesGridProps> = ({
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => {
+                    const srvTitle = selectedService.title;
                     setSelectedService(null);
-                    onOpenConsultation();
+                    onOpenConsultation({
+                      subject: `Book Free Site Visit for ${srvTitle} - Capsule Company`,
+                    });
                   }}
                   className="flex-1 sm:flex-none px-6 py-3 bg-brand-copper hover:bg-brand-copperLight text-white text-xs font-bold tracking-widest uppercase rounded-full shadow-md transition-all cursor-pointer text-center"
                 >

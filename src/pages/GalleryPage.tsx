@@ -8,12 +8,13 @@ import {
 } from 'lucide-react';
 import { galleryData, galleryCategories, GalleryCategoryName } from '../data/galleryData';
 import { ConsultationForm } from '../components/sections/ConsultationForm';
+import { openGmail } from '../utils/mail';
 
 interface GalleryPageProps {
   onOpenConsultation: () => void;
 }
 
-export const GalleryPage: React.FC<GalleryPageProps> = () => {
+export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) => {
   const [selectedCategory, setSelectedCategory] = useState<GalleryCategoryName>('Paints');
   const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
 
@@ -122,12 +123,17 @@ export const GalleryPage: React.FC<GalleryPageProps> = () => {
           </span>
         </div>
 
-        <a
-          href="mailto:Workscapsule@gmail.com"
-          className="self-start sm:self-auto px-4 py-1.5 bg-brand-copper hover:bg-brand-copperLight text-white text-[11px] font-bold tracking-widest uppercase rounded-full shadow-xs transition-all cursor-pointer inline-flex items-center justify-center whitespace-nowrap"
+        <button
+          onClick={() =>
+            openGmail({
+              subject: `Quote Request for ${selectedCategory} - Capsule Company`,
+              body: `Hi Capsule Company Team,\n\nI would like to request a quote and consultation for ${selectedCategory}.\n\nProject Details:\n• Name: \n• Phone Number: \n• Location in Bengaluru: \n• Requirements / Specifications: \n\nLooking forward to hearing from you.\n\nThank you!`,
+            })
+          }
+          className="self-start sm:self-auto px-4 py-1.5 bg-brand-copper hover:bg-brand-copperLight text-white text-[11px] font-bold tracking-widest uppercase rounded-full shadow-xs transition-all cursor-pointer inline-flex items-center justify-center whitespace-nowrap active:scale-95"
         >
           REQUEST QUOTE FOR {selectedCategory.toUpperCase()}
-        </a>
+        </button>
       </div>
 
       {/* Optimized Bento Grid Architecture - Dense Packing with Tight Crisp Gaps */}

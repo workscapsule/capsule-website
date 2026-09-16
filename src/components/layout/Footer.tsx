@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, MapPin, Mail, Instagram, Facebook, Globe, Youtube, ArrowUp } from 'lucide-react';
 import { companyConfig } from '../../config/company';
+import { getGmailUrl } from '../../utils/mail';
 
 interface FooterProps {
   onOpenConsultation: () => void;
@@ -179,7 +180,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-brand-copper shrink-0" />
-                <a href={`mailto:${companyConfig.email}`} className="hover:text-brand-copper transition-colors">
+                <a
+                  href={getGmailUrl({ subject: 'Inquiry - Capsule Company' })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-copper transition-colors"
+                  title="Send email via Gmail"
+                >
                   {companyConfig.email}
                 </a>
               </div>

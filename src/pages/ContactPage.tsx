@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, MessageSquare, ExternalLink, Instagram, Facebook, Globe } from 'lucide-react';
 import { companyConfig } from '../config/company';
 import { ConsultationForm } from '../components/sections/ConsultationForm';
+import { getGmailUrl } from '../utils/mail';
 
 interface ContactPageProps {
   onOpenConsultation?: () => void;
@@ -118,8 +119,11 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
 
             <div className="space-y-2 pt-3 border-t border-brand-border/60">
               <a
-                href={`mailto:${companyConfig.email}`}
+                href={getGmailUrl({ subject: 'General Project Inquiry - Capsule Company' })}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-sm font-semibold text-brand-black hover:text-brand-copper transition-colors"
+                title="Send email via Gmail"
               >
                 {companyConfig.email}
               </a>

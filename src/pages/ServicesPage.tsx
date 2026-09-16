@@ -12,7 +12,7 @@ import { servicesData } from '../data/servicesData';
 import { ConsultationForm } from '../components/sections/ConsultationForm';
 
 interface ServicesPageProps {
-  onOpenConsultation: () => void;
+  onOpenConsultation: (options?: { subject?: string; body?: string }) => void;
 }
 
 // 8 Custom SVG Icons matching the reference creative flyer
@@ -289,7 +289,12 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation }
               {/* Actions */}
               <div className="pt-2 border-t border-brand-border/70 flex flex-wrap items-center gap-2.5 w-full">
                 <button
-                  onClick={onOpenConsultation}
+                  onClick={() =>
+                    onOpenConsultation({
+                      subject: `Free Estimate Request for ${srv.title} - Capsule Company`,
+                      body: `Hi Capsule Company Team,\n\nI would like to get a free estimate for ${srv.title}.\n\nProject Details:\n• Name: \n• Phone Number: \n• Project Location in Bengaluru: \n• Approximate Area / Dimensions (sq ft): \n• Estimated Timeline: \n• Requirements / Message: \n\nLooking forward to hearing from you.\n\nThank you!`,
+                    })
+                  }
                   className="flex-1 px-4 py-2.5 bg-brand-copper hover:bg-brand-copperLight text-white text-xs font-bold tracking-wider uppercase rounded-full shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-95"
                 >
                   <span>GET FREE ESTIMATE</span>
@@ -323,7 +328,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation }
               Skip the coordination headache between different sub-contractors. Capsule Company unifies painting, POP false ceilings, carpentry, modular kitchens, metal fabrication, plumbing, electricals, and marble/tile laying under a single dedicated project manager and site engineer.
             </p>
             <button
-              onClick={onOpenConsultation}
+              onClick={() =>
+                onOpenConsultation({
+                  subject: 'Book Free Site Consultation (Turnkey Construction + Interiors) - Capsule Company',
+                })
+              }
               className="px-6 py-3.5 bg-brand-copper hover:bg-brand-copperLight text-white text-xs font-bold tracking-widest uppercase rounded-full shadow-xl transition-all active:scale-95 cursor-pointer"
             >
               BOOK YOUR FREE SITE CONSULTATION

@@ -92,12 +92,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               <span className="xl:hidden">Call</span>
             </a>
 
-            <a
-              href="mailto:Workscapsule@gmail.com"
+            <button
+              onClick={onOpenConsultation}
               className="px-4 py-2 bg-brand-black text-white hover:bg-brand-copper text-[11px] xl:text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 shadow-sm hover:shadow active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center justify-center"
             >
               FREE CONSULTATION
-            </a>
+            </button>
           </div>
 
           {/* Mobile / Tablet Right Controls */}
@@ -183,13 +183,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
           {/* Drawer Footer Actions */}
           <div className="pt-6 border-t border-brand-border space-y-3 mt-6">
-            <a
-              href="mailto:Workscapsule@gmail.com"
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenConsultation();
+              }}
               className="w-full py-3.5 bg-brand-copper text-white text-xs font-bold tracking-widest uppercase rounded-full shadow-md active:scale-95 transition-all text-center cursor-pointer inline-flex items-center justify-center"
             >
               GET FREE CONSULTATION
-            </a>
+            </button>
 
             <div className="grid grid-cols-2 gap-2 pt-1">
               <a
