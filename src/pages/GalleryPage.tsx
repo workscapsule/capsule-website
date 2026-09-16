@@ -94,8 +94,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = () => {
                     setActiveItemIndex(null);
                   }}
                   className={`px-3 sm:px-4 py-2 rounded-lg text-[11px] font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1.5 ${isSelected
-                      ? 'bg-brand-black text-brand-copper shadow-md ring-1 ring-brand-copper/50 scale-[1.02]'
-                      : 'bg-brand-ivory/80 text-brand-black/80 hover:text-brand-copper hover:bg-brand-cream border border-brand-border/60'
+                    ? 'bg-brand-black text-brand-copper shadow-md ring-1 ring-brand-copper/50 scale-[1.02]'
+                    : 'bg-brand-ivory/80 text-brand-black/80 hover:text-brand-copper hover:bg-brand-cream border border-brand-border/60'
                     }`}
                 >
                   {isSelected && <Sparkles className="w-3 h-3 text-brand-copper" />}

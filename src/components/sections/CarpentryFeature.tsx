@@ -13,25 +13,25 @@ export const CarpentryFeature: React.FC<CarpentryFeatureProps> = ({ onOpenConsul
       title: 'MODULAR KITCHENS',
       desc: 'Precision cabinetry, soft-close drawers, and scratch-resistant finishes.',
       tag: 'Kitchens',
-      image: '/assets/creatives/img7.jpeg',
+      image: '/assets/gallery/gallery-kitchen.jpg',
     },
     {
       title: 'CUSTOM WARDROBES',
       desc: 'Floor-to-ceiling sliding & openable wardrobes with smart internal organizers.',
       tag: 'Wardrobes',
-      image: '/assets/creatives/img11.jpeg',
+      image: '/assets/gallery/customized-wardrobe/customized-wardrobe-01.jpg',
     },
     {
       title: 'DOORS & WINDOWS',
       desc: 'Solid teakwood, acoustic veneered flush doors, and heavy-duty frame fixtures.',
       tag: 'Doors',
-      image: '/assets/creatives/img3.jpeg',
+      image: '/assets/gallery/gallery-glassdoors.jpg',
     },
     {
       title: 'CUSTOM FURNITURE',
       desc: 'Fluted TV wall consoles, dining sets, acoustic paneling, and bespoke storage.',
       tag: 'Custom Work',
-      image: '/assets/creatives/img5.jpeg',
+      image: '/assets/gallery/gallery-living.jpg',
     },
   ];
 

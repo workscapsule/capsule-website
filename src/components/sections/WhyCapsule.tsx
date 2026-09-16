@@ -85,7 +85,7 @@ export const WhyCapsule: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/creatives/img4.jpeg"
+                src="/assets/gallery/gallery-electrical.jpg"
                 alt="Craftsmanship and Accuracy"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -93,7 +93,7 @@ export const WhyCapsule: React.FC = () => {
             </div>
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/creatives/img3.jpeg"
+                src="/assets/gallery/gallery-marble.jpg"
                 alt="Electrical and Plumbing Supervision"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -101,7 +101,7 @@ export const WhyCapsule: React.FC = () => {
             </div>
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/creatives/img1.jpeg"
+                src="/assets/gallery/gallery-renovation.jpg"
                 alt="Precision Marble and Flooring"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -109,7 +109,7 @@ export const WhyCapsule: React.FC = () => {
             </div>
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/creatives/img10.jpeg"
+                src="/assets/gallery/gallery-consultation.jpg"
                 alt="Client Consultation & Material Selection"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"

@@ -66,22 +66,18 @@ export const ExteriorFeature: React.FC<ExteriorFeatureProps> = ({ onOpenConsulta
 
           {/* Right Column: Architectural Visual */}
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-brand-border group bg-brand-black">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-brand-border group bg-brand-black flex items-center justify-center p-2 sm:p-4">
+              <div 
+                className="absolute inset-0 bg-cover bg-center blur-2xl opacity-30 scale-125 pointer-events-none"
+                style={{ backgroundImage: `url(/assets/creatives/img8.jpeg)` }}
+              />
+              <div className="absolute inset-0 bg-brand-black/30 backdrop-blur-xs pointer-events-none" />
               <img
                 src="/assets/creatives/img8.jpeg"
                 alt="Contemporary Villa Model and Architecture"
-                className="w-full h-auto object-cover group-hover:scale-103 transition-transform duration-700 max-h-[580px]"
+                className="relative z-10 w-auto h-auto max-w-full max-h-[580px] object-contain rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
                 loading="lazy"
               />
-
-              <div className="absolute bottom-4 left-4 right-4 glass-panel-dark rounded-xl p-4 text-white">
-                <span className="text-[10px] font-bold tracking-widest text-brand-copper uppercase block">
-                  Turnkey Execution
-                </span>
-                <p className="text-xs sm:text-sm font-semibold mt-0.5">
-                  From Smart Planning to Smooth Handover
-                </p>
-              </div>
             </div>
           </div>
 

@@ -18,19 +18,18 @@ export const OurPromise: React.FC<OurPromiseProps> = ({ onOpenConsultation }) =>
           
           {/* Left Column: Image Composition matching img5 */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group bg-brand-dark">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group bg-brand-dark flex items-center justify-center p-2 sm:p-4">
+              <div 
+                className="absolute inset-0 bg-cover bg-center blur-2xl opacity-30 scale-125 pointer-events-none"
+                style={{ backgroundImage: `url(/assets/creatives/img5.jpeg)` }}
+              />
+              <div className="absolute inset-0 bg-brand-black/40 backdrop-blur-xs pointer-events-none" />
               <img
                 src="/assets/creatives/img5.jpeg"
                 alt="Capsule Company Promise & Workspaces"
-                className="w-full h-auto object-cover group-hover:scale-103 transition-transform duration-700 max-h-[580px]"
+                className="relative z-10 w-auto h-auto max-w-full max-h-[580px] object-contain rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
                 loading="lazy"
               />
-              <div className="absolute top-4 right-4 glass-panel-dark rounded-xl px-3.5 py-2 text-white border border-brand-copper/30">
-                <span className="text-[10px] font-bold tracking-widest text-brand-copper uppercase">
-                  Bengaluru Standard
-                </span>
-                <p className="text-xs font-semibold">Let's build something better.</p>
-              </div>
             </div>
             
             {/* Geometric Copper Frame Corner */}

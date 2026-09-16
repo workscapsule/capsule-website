@@ -2,147 +2,163 @@ import { ServiceItem } from '../types';
 
 export const servicesData: ServiceItem[] = [
   {
-    id: 'construction-civil',
+    id: 'paints',
     number: '01',
-    title: 'CONSTRUCTION & CIVIL WORKS',
-    shortDesc: 'Comprehensive residential and commercial construction executed with structural engineering excellence.',
-    fullDesc: 'From foundational civil work to turnkey architectural execution, Capsule Company delivers end-to-end building construction across Bengaluru with uncompromised engineering standards, lab-tested steel & cement, and strict schedule adherence.',
+    title: 'Paints',
+    shortDesc: 'Beautiful finishes for lasting impressions.',
+    fullDesc: 'Expert surface preparation and luxury paint finishes that elevate your walls and exteriors with enduring color vibrancy, zero chalking, and superior weather resistance across Bengaluru.',
     features: [
-      'Residential Villa & Independent Home Construction',
-      'Commercial & Office Structural Framework',
-      'Foundation, Earthwork & RCC Column Structures',
-      'High-grade Brickwork, Plastering & Masonry',
-      'Dedicated Structural Engineering Supervision',
-      'Quality Lab-Tested Cement & Fe550D Steel Sourcing'
+      'Luxury Emulsion & Royal Designer Wall Textures',
+      'Complete Surface Putty, Primer & Crack Filling',
+      'Airless Spray Application & Seamless Edge Cutting',
+      'Weather-Resistant Exterior Silicone Wall Coatings',
+      'Odor-Free, Non-Toxic & 100% Washable Formulations',
+      'Dedicated Masking & Post-Painting Site Cleaning'
     ],
-    iconName: 'Building2',
-    category: 'construction',
-    image: '/assets/creatives/img8.jpeg'
+    iconName: 'PaintRoller',
+    badgeColor: '#E08A27',
+    accentColor: '#F59E0B',
+    category: 'interiors',
+    image: '/assets/services/service-01-paints.jpg'
   },
   {
-    id: 'turnkey-interiors',
+    id: 'pop',
     number: '02',
-    title: 'TURNKEY INTERIOR DESIGN',
-    shortDesc: 'End-to-end bespoke interior design bringing aesthetic elegance, ergonomics, and seamless functionality.',
-    fullDesc: 'We transform empty shells into immersive living spaces. Experience cohesive interior design featuring architectural false ceilings, ambient lighting curation, bespoke space layouts, and premium European-standard surface finishes.',
+    title: 'POP',
+    shortDesc: 'Elegant ceilings for modern living.',
+    fullDesc: 'Architectural Plaster of Paris (POP) and gypsum false ceilings engineered with precision galvanized framing, concealed LED cove light channels, and decorative molding profiles.',
     features: [
-      'End-to-end Turnkey Residential & Commercial Interiors',
-      'Architectural False Ceilings, POP & Cove Lighting',
-      'Ergonomic Living, Dining & Bedroom Layouts',
-      'Acoustic Panelling & Designer Wall Treatments',
-      'Concealed Ambient LED & Mood Lighting Systems',
-      'Turnkey Delivery with 45-Day Move-in Guarantee'
+      'Architectural False Ceilings with Perimeter Cove Lighting',
+      'Heavy-Duty Galvanized Steel Framework & GI Channels',
+      'Seamless Gypsum Board Jointing & Leveling Compound',
+      'Curved, Stepped & Multi-Tier Designer Drop Ceilings',
+      'Acoustic Damping & Thermal Insulation Capabilities',
+      'Zero-Sag Guarantee with Certified Hanging Anchors'
     ],
-    iconName: 'LayoutGrid',
+    iconName: 'POPTrowel',
+    badgeColor: '#557849',
+    accentColor: '#65A30D',
     category: 'interiors',
-    image: '/assets/creatives/img5.jpeg'
+    image: '/assets/services/service-02-pop.jpg'
   },
   {
-    id: 'modular-kitchens',
+    id: 'carpenter',
     number: '03',
-    title: 'MODULAR KITCHENS & CLOSETS',
-    shortDesc: 'Precision-engineered modular kitchens, custom wardrobes, and smart storage systems built to last.',
-    fullDesc: 'Crafted for the modern Bengaluru home. From island kitchens and parallel layouts to floor-to-ceiling acrylic wardrobes, we engineer boiling-water-proof (BWP) marine ply cabinetry with premium German soft-close hardware.',
+    title: 'Carpenter',
+    shortDesc: 'Custom woodwork for your unique style.',
+    fullDesc: 'Master craftsmanship in bespoke joinery, architectural wooden doors, fluted wall paneling, floating entertainment consoles, and solid teak furniture built to last generations.',
     features: [
-      'Custom Island, L-Shape & Parallel Kitchen Configurations',
-      'BWP Marine-Grade 710 Plywood & Anti-scratch Acrylic',
-      'Soft-close Blum / Hafele Hinges & Telescopic Drawers',
-      'Quartz & Calacatta Marble Countertop Engineering',
-      'Floor-to-Ceiling Walk-in Closets & Sliding Wardrobes',
-      'Built-in Chimney, Hob & Smart Appliance Integration'
+      'Custom Joinery, Paneling & Architectural Millwork',
+      'Solid Teak & Engineered Flush Doors with Hardwood Jambs',
+      'Designer Fluted TV Media Consoles & Partition Walls',
+      'Vanity Counters, Shoe Cabinets & Under-Stair Storage',
+      'Branded Heavy-Duty Soft-Close Hinges & Runners',
+      'Bespoke Polish, Veneer Laying & PU Matte Finishes'
     ],
-    iconName: 'ChefHat',
+    iconName: 'CarpenterFrame',
+    badgeColor: '#9B5E34',
+    accentColor: '#B45309',
     category: 'interiors',
-    image: '/assets/creatives/img7.jpeg'
+    image: '/assets/services/service-03-carpenter.jpg'
   },
   {
-    id: 'carpentry-fabrication',
+    id: 'modular-kitchen-wardrobe',
     number: '04',
-    title: 'EXPERT CARPENTRY & FABRICATION',
-    shortDesc: 'Artisanal custom furniture, architectural wooden fluting, solid doors, and precision metal fabrication.',
-    fullDesc: 'Crafted with precision, built for generations. Our master carpenters and fabricators deliver custom millwork, bespoke teak pivot doors, fluted TV media consoles, acoustic wooden slats, and structural metal pergolas.',
+    title: 'Modular Kitchen / Customized Wardrobe',
+    shortDesc: 'Smart storage. Better living.',
+    fullDesc: 'Ergonomically planned modular kitchens, island counters, and floor-to-ceiling customized wardrobes crafted with 100% boiling-water-proof (BWP) marine ply and premium German hardware.',
     features: [
-      'Solid Teak & Engineered Architectural Doors',
-      'Floating TV Consoles & Acoustic Wooden Slat Walls',
-      'Custom Millwork, Vanity Counters & Partitions',
-      'Architectural MS & SS Metal Railings & Safety Gates',
-      'Structural Steel & Toughened Glass Pergolas',
-      'Heavy-duty Hardware with Lifetime Smooth Operation'
+      'Custom Island, Parallel & L-Shaped Kitchen Layouts',
+      'IS:710 Marine Grade Plywood with Acrylic & Laminate Finishes',
+      'Floor-to-Ceiling Walk-in Closets & Sliding Wardrobes',
+      'Concealed Sensor LED Strips & Integrated Dresser Units',
+      'Blum / Hafele Soft-Close Tandem Boxes & Lift-up Systems',
+      'Quartz Countertops with Seamless Undermount Sink Cutting'
     ],
-    iconName: 'Hammer',
+    iconName: 'WardrobeDoors',
+    badgeColor: '#6A217B',
+    accentColor: '#9333EA',
     category: 'interiors',
-    image: '/assets/creatives/img11.jpeg'
+    image: '/assets/services/service-04-modular-kitchen.jpg'
   },
   {
-    id: 'exterior-facades',
+    id: 'fabrication',
     number: '05',
-    title: 'EXTERIOR & FACADE ENGINEERING',
-    shortDesc: 'Striking contemporary elevations, weather-resistant cladding, louvers, and terrace outdoor living.',
-    fullDesc: 'First impressions that define architectural prestige. We engineer weather-resistant exterior elevations utilizing concrete textures, HPL sheets, terracotta louvers, glass railings, and waterproof terrace pergolas.',
+    title: 'Fabrication',
+    shortDesc: 'Strong structures for a lasting tomorrow.',
+    fullDesc: 'Precision metal fabrication and heavy-duty structural steelwork, delivering modern entrance gates, glass balcony railings, industrial pergolas, and laser-cut architectural screens.',
     features: [
-      'Contemporary Villa Elevations & Exterior Facades',
-      'High-Pressure Laminate (HPL) & Stone Cladding',
-      'Thermal & Acoustic Double-Glazed Curtain Walls',
-      'Architectural CNC Louvers & Solar Shading Fins',
-      'Weather-resistant External Wall Coatings & Textures',
-      'Balcony Green Walls & Terrace Pergola Engineering'
+      'Structural Steel (MS & SS 304/316) Framework Fabrication',
+      'Architectural Glass & Stainless Steel Balcony Railings',
+      'Weather-Resistant Terrace Pergolas & Polycarbonate Roofs',
+      'Precision Laser-Cut CNC Security Gates & Window Grills',
+      'Anti-Corrosion Epoxy Zinc Phosphate Primer Treatment',
+      'Rigid Load-Bearing Safety Compliance & Seamless Welding'
     ],
-    iconName: 'Building',
-    category: 'exteriors',
-    image: '/assets/creatives/img2.jpeg'
+    iconName: 'WelderMask',
+    badgeColor: '#18727E',
+    accentColor: '#06B6D4',
+    category: 'construction',
+    image: '/assets/services/service-05-fabrication.jpg'
   },
   {
-    id: 'renovation-upgradation',
+    id: 'plumbing',
     number: '06',
-    title: 'RENOVATION & UPGRADATION',
-    shortDesc: 'Revitalizing existing houses, apartments, and offices into modern, high-value functional spaces.',
-    fullDesc: 'Breathe new life into your existing space. We handle complete structural redesigns, bathroom waterproofing overhauls, flooring replacements, and space reconfiguration with minimal disruption and strict budget control.',
+    title: 'Plumbing',
+    shortDesc: 'Safe flow. Seamless living.',
+    fullDesc: 'Engineered sanitary and concealed water supply distribution, pressure testing, premium bathroom fixture installations, and clog-free drainage networks built for lifelong reliability.',
     features: [
-      'Complete Villa, House & Apartment Upgrades',
-      'Commercial Workspace Refurbishment',
-      'Structural Wall Removal & Space Optimization',
-      'Comprehensive Bathroom Remodeling & Waterproofing',
-      'Demolition, Debris Disposal & Level Re-alignment',
-      'Fixed-price Guarantee with No Unforeseen Hidden Costs'
+      'Concealed CPVC / UPVC Hot & Cold Water Distribution',
+      'Concealed Flush Tanks & Wall-Hung Commode Mounting',
+      'Diverters, Thermostatic Mixers & Overhead Rain Showers',
+      'Multi-Stage Water Pressure Boosting & Hydro-Pneumatic Pumps',
+      'Acoustic SWR Soil & Waste Pipe Routing with P-Traps',
+      '100% Hydrostatic Pressure Leak Testing Before Concealment'
     ],
-    iconName: 'Sparkles',
-    category: 'all',
-    image: '/assets/creatives/img1.jpeg'
+    iconName: 'PlumbingPipe',
+    badgeColor: '#1D6FB8',
+    accentColor: '#3B82F6',
+    category: 'utilities',
+    image: '/assets/services/service-06-plumbing.jpg'
   },
   {
-    id: 'electrical-automation',
+    id: 'electricals',
     number: '07',
-    title: 'ELECTRICAL & SMART AUTOMATION',
-    shortDesc: 'Certified concealed electrical distribution, smart home automation, and precision conduit routing.',
-    fullDesc: 'The reliable lifeline of modern infrastructure. We execute fire-retardant concealed conduit wiring, balanced load distribution boards (DB), designer touch switches, smart scene lighting, and EV charger provisioning.',
+    title: 'Electricals',
+    shortDesc: 'Powering your modern life.',
+    fullDesc: 'Certified electrical infrastructure, concealed fire-retardant conduit wiring, balanced load distribution boards, smart lighting automation, and EV charger provisioning.',
     features: [
-      'FR/FRLS Fire-Retardant Copper Conduit Wiring',
-      'Three-phase Electrical Load Balancing & MCB Distribution',
-      'Smart Home Lighting Automation & Mobile Control',
-      'Concealed Networking, CCTV & Intercom Infrastructure',
-      'Solar Rooftop Inverter & EV Charging Points',
-      'Comprehensive Thermal Imaging & Earthing Resistance Tests'
+      'FRLS (Fire-Retardant Low Smoke) Multi-Strand Copper Wiring',
+      '3-Phase MCB / RCCB Distribution Boards & Load Balancing',
+      'Smart Home Scene Automation & Feather-Touch Switches',
+      'Concealed Architectural Magnetic Track & Profile Lights',
+      'Dedicated High-Amperage EV Charging & Inverter Points',
+      'Earthing Resistance Testing & Surge Protection Setup'
     ],
-    iconName: 'Zap',
-    category: 'all',
-    image: '/assets/creatives/img4.jpeg'
+    iconName: 'ElectricalLightning',
+    badgeColor: '#BA223D',
+    accentColor: '#EF4444',
+    category: 'utilities',
+    image: '/assets/services/service-07-electricals.jpg'
   },
   {
-    id: 'flooring-finishes',
+    id: 'tiles-marble-granite',
     number: '08',
-    title: 'FLOORING, TILES & FINISHES',
-    shortDesc: 'Italian marble laying, large-format vitrified tiles, acoustic aluminium profiles, and luxury finishes.',
-    fullDesc: 'Immaculate floor leveling and surface finishing. From seamless Italian marble laying and diamond polishing to slim-profile acoustic aluminium sliding doors and designer micro-cement wall plasters.',
+    title: 'Tiles / Marble / Granite',
+    shortDesc: 'Timeless surfaces. Lasting value.',
+    fullDesc: 'Flawless zero-lip laying of Italian marble, large-format vitrified tiles, polished granite counter slabs, and epoxy anti-stain grouting for pristine, durable surfaces.',
     features: [
       'Imported Italian Marble Laying & Diamond Mirror Polishing',
-      'Large Format Vitrified Tiles (1200x1800mm) Zero-lip Laying',
-      'Slim-profile Acoustic Aluminium Sliding Doors & Windows',
-      'Frameless Toughened Glass Shower Partitions',
-      'Designer Hardwood, Chevron & SPC Vinyl Flooring',
-      'Micro-cement, Stucco & Luxury Royal Emulsion Coatings'
+      'Large Format Vitrified Slabs (1200x1800mm / 800x1600mm)',
+      'Zero-Lip Precision Leveling Clips & Polymer Adhesives',
+      'Kitchen Countertop Granite Bullnosing & Edge Chamfering',
+      'Waterproof Epoxy Tile Grouting with Anti-Stain Protection',
+      'Laser-Guided Gradient Slope Alignment in Bathrooms & Balconies'
     ],
-    iconName: 'Grid',
+    iconName: 'TilesDiamond',
+    badgeColor: '#3D4A5A',
+    accentColor: '#64748B',
     category: 'interiors',
-    image: '/assets/creatives/img3.jpeg'
+    image: '/assets/services/service-08-tiles.jpg'
   }
 ];

@@ -8,8 +8,10 @@ export interface ServiceItem {
   fullDesc: string;
   features: string[];
   iconName: string;
-  category: 'construction' | 'interiors' | 'exteriors' | 'all';
+  category: 'construction' | 'interiors' | 'exteriors' | 'utilities' | 'all';
   image: string;
+  badgeColor?: string;
+  accentColor?: string;
 }
 
 export interface ProjectItem {

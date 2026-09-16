@@ -51,23 +51,18 @@ export const ModularKitchenFeature: React.FC<ModularKitchenFeatureProps> = ({ on
           
           {/* Left Column: Image Composition matching img7 */}
           <div className="lg:col-span-6 relative order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-brand-border group bg-white">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-brand-border group bg-brand-black flex items-center justify-center p-2 sm:p-4">
+              <div 
+                className="absolute inset-0 bg-cover bg-center blur-2xl opacity-30 scale-125 pointer-events-none"
+                style={{ backgroundImage: `url(/assets/creatives/img7.jpeg)` }}
+              />
+              <div className="absolute inset-0 bg-brand-black/30 backdrop-blur-xs pointer-events-none" />
               <img
                 src="/assets/creatives/img7.jpeg"
                 alt="Customized Modular Kitchen by Capsule Company"
-                className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-700 max-h-[600px]"
+                className="relative z-10 w-auto h-auto max-w-full max-h-[580px] object-contain rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
                 loading="lazy"
               />
-
-              {/* Overlay Badge */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 glass-panel-dark rounded-xl px-4 py-2.5 text-white shadow-lg">
-                <span className="text-[10px] uppercase tracking-widest text-brand-copper font-bold block">
-                  Bengaluru Living
-                </span>
-                <span className="text-xs font-semibold text-white">
-                  Better Spaces. Brighter Living.
-                </span>
-              </div>
             </div>
 
             {/* Copper Line Anchor */}

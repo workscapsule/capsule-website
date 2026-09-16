@@ -7,7 +7,7 @@ export const projectsData: ProjectItem[] = [
     category: 'CONSTRUCTION',
     categoryLabel: 'Civil & Construction',
     location: 'Hebbal Kempapura, Bengaluru',
-    image: '/assets/creatives/img8.jpeg',
+    image: '/assets/gallery/gallery-elevation.jpg',
     scope: [
       'Turnkey Architectural Construction',
       'RCC Structure & Brick Masonry',
@@ -25,7 +25,7 @@ export const projectsData: ProjectItem[] = [
     category: 'INTERIORS',
     categoryLabel: 'Turnkey Interiors',
     location: 'Yelahanka, Bengaluru',
-    image: '/assets/creatives/img7.jpeg',
+    image: '/assets/gallery/gallery-kitchen.jpg',
     scope: [
       'Custom Island Modular Kitchen',
       'Soft-close Anti-scratch Cabinets',
@@ -43,7 +43,7 @@ export const projectsData: ProjectItem[] = [
     category: 'INTERIORS',
     categoryLabel: 'Carpentry & Millwork',
     location: 'Indiranagar, Bengaluru',
-    image: '/assets/creatives/img11.jpeg',
+    image: '/assets/gallery/gallery-glassdoors.jpg',
     scope: [
       'Acoustic Wooden Slat Feature Wall',
       'Concealed Ambient LED Floating Console',
@@ -61,7 +61,7 @@ export const projectsData: ProjectItem[] = [
     category: 'INTERIORS',
     categoryLabel: 'Commercial Fitout',
     location: 'Outer Ring Road, Bengaluru',
-    image: '/assets/creatives/img5.jpeg',
+    image: '/assets/gallery/gallery-office.jpg',
     scope: [
       'Acoustic Black Aluminum Glass Partitions',
       'Modular Ergonomic Workstations',
@@ -79,7 +79,7 @@ export const projectsData: ProjectItem[] = [
     category: 'EXTERIORS',
     categoryLabel: 'Exterior & Facade',
     location: 'Sahakar Nagar, Bengaluru',
-    image: '/assets/creatives/img2.jpeg',
+    image: '/assets/gallery/gallery-facade.jpg',
     scope: [
       'Exposed Concrete Texture Cladding',
       'Weather-proof Exterior Wood Paneling',
@@ -97,7 +97,7 @@ export const projectsData: ProjectItem[] = [
     category: 'CONSTRUCTION',
     categoryLabel: 'Renovation & Finishes',
     location: 'Whitefield, Bengaluru',
-    image: '/assets/creatives/img1.jpeg',
+    image: '/assets/gallery/gallery-renovation.jpg',
     scope: [
       'High-precision Italian Marble Laying',
       'False Ceiling with Indirect Warm Cove Lights',
