@@ -4,6 +4,7 @@ import { MapPin, ArrowRight, Clock, Maximize2, Sparkles, Building2, LayoutGrid, 
 import { projectsData } from '../data/projectsData';
 import { ProjectItem, ProjectCategory } from '../types';
 import { ConsultationForm } from '../components/sections/ConsultationForm';
+import { withAssetVersion } from '../utils/assets';
 
 interface ProjectsPageProps {
   onSelectProject: (project: ProjectItem) => void;
@@ -84,7 +85,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject, onO
               {/* Image Frame */}
               <div className="relative aspect-16/11 w-full overflow-hidden bg-gray-100">
                 <img
-                  src={project.image}
+                  src={withAssetVersion(project.image)}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                   loading="lazy"

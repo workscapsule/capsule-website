@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, MapPin, Calendar, Maximize, CheckCircle2, ArrowRight } from 'lucide-react';
 import { ProjectItem } from '../../types';
+import { withAssetVersion } from '../../utils/assets';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -33,7 +34,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
         {/* Project Hero Image */}
         <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-brand-black">
           <img
-            src={project.image}
+            src={withAssetVersion(project.image)}
             alt={project.title}
             className="w-full h-full object-cover object-center"
           />

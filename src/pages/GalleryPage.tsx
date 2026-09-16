@@ -9,6 +9,7 @@ import {
 import { galleryData, galleryCategories, GalleryCategoryName } from '../data/galleryData';
 import { ConsultationForm } from '../components/sections/ConsultationForm';
 import { openGmail } from '../utils/mail';
+import { withAssetVersion } from '../utils/assets';
 
 interface GalleryPageProps {
   onOpenConsultation: () => void;
@@ -149,7 +150,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) 
               >
                 {/* Image */}
                 <img
-                  src={item.image}
+                  src={withAssetVersion(item.image)}
                   alt={item.title}
                   className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
@@ -225,7 +226,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) 
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={currentItem.image}
+              src={withAssetVersion(currentItem.image)}
               alt={currentItem.title}
               className="max-h-[80vh] max-w-[90vw] w-auto h-auto object-contain rounded-xl shadow-2xl block"
             />

@@ -3,6 +3,7 @@ import { SectionHeader } from '../common/SectionHeader';
 import { projectsData } from '../../data/projectsData';
 import { ProjectCategory, ProjectItem } from '../../types';
 import { MapPin, ArrowRight, Eye, Layers } from 'lucide-react';
+import { withAssetVersion } from '../../utils/assets';
 
 interface ProjectsPortfolioProps {
   onSelectProject: (project: ProjectItem) => void;
@@ -64,7 +65,7 @@ export const ProjectsPortfolio: React.FC<ProjectsPortfolioProps> = ({
               {/* Image Container with Hover Zoom */}
               <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-black">
                 <img
-                  src={project.image}
+                  src={withAssetVersion(project.image)}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   loading="lazy"
