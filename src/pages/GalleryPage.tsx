@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
   X,
   ChevronLeft,
@@ -8,20 +8,69 @@ import {
 } from 'lucide-react';
 import { galleryData, galleryCategories, GalleryCategoryName } from '../data/galleryData';
 import { ConsultationForm } from '../components/sections/ConsultationForm';
-import { openGmail } from '../utils/mail';
 import { withAssetVersion } from '../utils/assets';
 
 interface GalleryPageProps {
-  onOpenConsultation: () => void;
+  onOpenConsultation: (source?: any) => void;
 }
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) => {
-  const [selectedCategory, setSelectedCategory] = useState<GalleryCategoryName>('Paints');
-  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const catParam = searchParams.get('category') || searchParams.get('cat');
 
-  // Filter gallery items for active category (exactly 30 images)
+  const resolveCategory = (param: string | null): GalleryCategoryName | null => {
+    if (!param) return null;
+    const p = param.toLowerCase().replace(/[-_]/g, ' ').trim();
+    if (p === 'paint' || p === 'paints') return 'Paint';
+    if (p === 'wardrobe' || p === 'customized wardrobe') return 'Customized Wardrobe';
+    if (p === 'kitchen' || p === 'modular kitchen') return 'Modular Kitchen';
+    if (p === 'pop' || p.includes('plaster')) return 'POP';
+    if (p === 'carpenter' || p === 'carpentry') return 'Carpenter';
+    if (p === 'fabrication') return 'Fabrication';
+    if (p === 'plumbing') return 'Plumbing';
+    if (p === 'electrical' || p === 'electricals') return 'Electrical';
+    if (p.includes('tile') || p.includes('granite') || p.includes('marble')) return 'Tiles';
+    return galleryCategories.find((c) => c.toLowerCase() === p) || null;
+  };
+
+  const initialCategory: GalleryCategoryName = useMemo(() => {
+    return resolveCategory(catParam) || 'Paint';
+  }, [catParam]);
+
+  const [selectedCategory, setSelectedCategory] = useState<GalleryCategoryName>(initialCategory);
+  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
+  const tabsContainerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const match = resolveCategory(catParam);
+    if (match && match !== selectedCategory) {
+      setSelectedCategory(match);
+      setActiveItemIndex(null);
+    }
+  }, [catParam, selectedCategory]);
+
+  useEffect(() => {
+    const container = tabsContainerRef.current;
+    if (!container) return;
+    if (selectedCategory === 'Paint') {
+      container.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      const activeBtn = container.querySelector(
+        `#gallery-tab-${selectedCategory.toLowerCase().replace(/[^a-z0-9]/g, '-')}`
+      ) as HTMLElement | null;
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      }
+    }
+  }, [selectedCategory]);
+
+  // Filter gallery items for active category
   const categoryItems = useMemo(() => {
-    return galleryData.filter((item) => item.category === selectedCategory);
+    return galleryData.filter((item) => 
+      item.category === selectedCategory ||
+      (selectedCategory === 'Paint' && (item.category === 'Paints' || item.category === 'Paint')) ||
+      (selectedCategory === 'Tiles' && (item.category === 'Tiles' || item.category === 'Tiles / Granite / Marble'))
+    );
   }, [selectedCategory]);
 
   const currentItem = activeItemIndex !== null ? categoryItems[activeItemIndex] : null;
@@ -82,33 +131,63 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) 
         </div>
       </div>
 
-      {/* 9 Category Selector Tabs - Sleek Horizontal Strip without Excessive Padding */}
+      {/* 9 Category Selector Tabs - Sleek Horizontal Strip with Navigation Controls */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-5 sm:-mt-6 relative z-20">
-        <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-2.5 shadow-lg border border-brand-border/80">
-          <div className="flex items-center justify-start lg:justify-center flex-nowrap gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none pb-1 sm:pb-0 px-0.5">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-1.5 sm:p-2.5 shadow-lg border border-brand-border/80 flex items-center gap-1 sm:gap-2">
+          {/* Scroll Left Button */}
+          <button
+            onClick={() => tabsContainerRef.current?.scrollBy({ left: -220, behavior: 'smooth' })}
+            aria-label="Scroll categories left"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-brand-ivory hover:bg-brand-cream border border-brand-border/60 text-brand-muted hover:text-brand-black flex items-center justify-center shrink-0 cursor-pointer transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <div 
+            ref={tabsContainerRef}
+            id="gallery-categories-strip"
+            className="flex items-center justify-start flex-nowrap gap-1 sm:gap-1.5 lg:gap-2 overflow-x-auto scroll-smooth scrollbar-none pb-1 sm:pb-0 px-0.5 flex-1"
+          >
             {galleryCategories.map((catName) => {
               const isSelected = selectedCategory === catName;
+              const count = galleryData.filter(
+                i => i.category === catName ||
+                     (catName === 'Paint' && (i.category === 'Paints' || i.category === 'Paint')) ||
+                     (catName === 'Tiles' && (i.category === 'Tiles' || i.category === 'Tiles / Granite / Marble'))
+              ).length;
+
               return (
                 <button
                   key={catName}
+                  id={`gallery-tab-${catName.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                   onClick={() => {
                     setSelectedCategory(catName);
                     setActiveItemIndex(null);
+                    setSearchParams({ category: catName }, { replace: true });
                   }}
-                  className={`px-3 sm:px-4 py-2 rounded-lg text-[11px] font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1.5 ${isSelected
+                  className={`px-2.5 sm:px-3 lg:px-3.5 py-1.5 sm:py-2 rounded-lg text-[10.5px] sm:text-[11px] font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1 sm:gap-1.5 ${isSelected
                     ? 'bg-brand-black text-brand-copper shadow-md ring-1 ring-brand-copper/50 scale-[1.02]'
                     : 'bg-brand-ivory/80 text-brand-black/80 hover:text-brand-copper hover:bg-brand-cream border border-brand-border/60'
                     }`}
                 >
-                  {isSelected && <Sparkles className="w-3 h-3 text-brand-copper" />}
+                  {isSelected && <Sparkles className="w-3 h-3 text-brand-copper shrink-0" />}
                   <span>{catName}</span>
-                  <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${isSelected ? 'bg-brand-copper/20 text-brand-copper' : 'bg-gray-200/70 text-brand-muted'}`}>
-                    {galleryData.filter(i => i.category === catName).length}
+                  <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded shrink-0 ${isSelected ? 'bg-brand-copper/20 text-brand-copper' : 'bg-gray-200/70 text-brand-muted'}`}>
+                    {count}
                   </span>
                 </button>
               );
             })}
           </div>
+
+          {/* Scroll Right Button */}
+          <button
+            onClick={() => tabsContainerRef.current?.scrollBy({ left: 220, behavior: 'smooth' })}
+            aria-label="Scroll categories right"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-brand-ivory hover:bg-brand-cream border border-brand-border/60 text-brand-muted hover:text-brand-black flex items-center justify-center shrink-0 cursor-pointer transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
@@ -117,7 +196,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) 
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-brand-copper animate-pulse" />
           <h2 className="font-display text-lg sm:text-xl font-bold uppercase text-brand-black tracking-wide">
-            {selectedCategory}
+            {selectedCategory === 'Tiles' ? 'Tiles / Granite / Marble' : selectedCategory}
           </h2>
           <span className="text-xs font-mono text-brand-muted bg-white px-2 py-0.5 rounded border border-brand-border/60">
             {categoryItems.length} Execution Photos
@@ -125,12 +204,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenConsultation }) 
         </div>
 
         <button
-          onClick={() =>
-            openGmail({
-              subject: `Quote Request for ${selectedCategory} - Capsule Company`,
-              body: `Hi Capsule Company Team,\n\nI would like to request a quote and consultation for ${selectedCategory}.\n\nProject Details:\n• Name: \n• Phone Number: \n• Location in Bengaluru: \n• Requirements / Specifications: \n\nLooking forward to hearing from you.\n\nThank you!`,
-            })
-          }
+          onClick={() => onOpenConsultation('Get Free Estimate')}
           className="self-start sm:self-auto px-4 py-1.5 bg-brand-copper hover:bg-brand-copperLight text-white text-[11px] font-bold tracking-widest uppercase rounded-full shadow-xs transition-all cursor-pointer inline-flex items-center justify-center whitespace-nowrap active:scale-95"
         >
           REQUEST QUOTE FOR {selectedCategory.toUpperCase()}

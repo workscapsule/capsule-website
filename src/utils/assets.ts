@@ -8,7 +8,7 @@
  * Appending this version string forces all browsers to fetch the newly updated
  * images immediately without requiring users to clear their browser cache.
  */
-export const ASSET_VERSION = 'v=20260917-01';
+export const ASSET_VERSION = 'v=20260917-electrical-new';
 
 export const withAssetVersion = (url: string): string => {
   if (!url) return url;

@@ -42,6 +42,18 @@ export interface ProcessStep {
   highlight?: string;
 }
 
+export type EnquirySource = 'Book Free Consultation' | 'Free Consultation' | 'Get Free Estimate';
+
+export interface EnquiryFormData {
+  firstName: string;
+  lastName: string;
+  mobileNumber: string;
+  altMobileNumber: string;
+  email: string;
+  locationAddress: string;
+  source: EnquirySource;
+}
+
 export interface LeadFormData {
   fullName: string;
   phone: string;
@@ -53,6 +65,7 @@ export interface LeadFormData {
   preferredContact: 'Phone' | 'WhatsApp' | 'Email';
   description: string;
 }
+
 
 export interface ChatMessage {
   id: string;

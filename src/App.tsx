@@ -8,7 +8,8 @@ import { Footer } from './components/layout/Footer';
 import { WhatsAppButton } from './components/interactive/WhatsAppButton';
 import { Chatbot } from './components/interactive/Chatbot';
 import { ProjectModal } from './components/interactive/ProjectModal';
-import { ProjectItem } from './types';
+import { EnquiryModal } from './components/interactive/EnquiryModal';
+import { ProjectItem, EnquirySource } from './types';
 
 // Dedicated Pages
 import { HomePage } from './pages/HomePage';
@@ -20,17 +21,33 @@ import { GalleryPage } from './pages/GalleryPage';
 import { WhyCapsulePage } from './pages/WhyCapsulePage';
 import { FAQPage } from './pages/FAQPage';
 import { ContactPage } from './pages/ContactPage';
-import { openGmail, EmailOptions } from './utils/mail';
 
 export const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [enquirySource, setEnquirySource] = useState<EnquirySource>('Free Consultation');
 
-  const scrollToConsultation = (arg?: EmailOptions | unknown) => {
-    if (arg && typeof arg === 'object' && ('subject' in arg || 'body' in arg || 'to' in arg)) {
-      openGmail(arg as EmailOptions);
-    } else {
-      openGmail();
+  const handleOpenConsultation = (arg?: unknown) => {
+    let source: EnquirySource = 'Free Consultation';
+    if (typeof arg === 'string') {
+      if (arg === 'Book Free Consultation' || arg === 'Free Consultation' || arg === 'Get Free Estimate') {
+        source = arg;
+      } else if (arg.toLowerCase().includes('estimate')) {
+        source = 'Get Free Estimate';
+      } else if (arg.toLowerCase().includes('book')) {
+        source = 'Book Free Consultation';
+      }
+    } else if (arg && typeof arg === 'object') {
+      const obj = arg as Record<string, any>;
+      const text = `${obj.subject || ''} ${obj.source || ''}`.toLowerCase();
+      if (text.includes('estimate')) {
+        source = 'Get Free Estimate';
+      } else if (text.includes('book')) {
+        source = 'Book Free Consultation';
+      }
     }
+    setEnquirySource(source);
+    setIsEnquiryOpen(true);
   };
 
   return (
@@ -46,7 +63,7 @@ export const App: React.FC = () => {
         <NoiseOverlay />
 
         {/* 3. Sticky Glassmorphism Header with 9 Nav Links */}
-        <Header onOpenConsultation={scrollToConsultation} />
+        <Header onOpenConsultation={() => handleOpenConsultation('Free Consultation')} />
 
         {/* Main Content Area Routing */}
         <main className="flex-1 w-full">
@@ -55,44 +72,44 @@ export const App: React.FC = () => {
               path="/"
               element={
                 <HomePage
-                  onOpenConsultation={scrollToConsultation}
+                  onOpenConsultation={handleOpenConsultation}
                   onSelectProject={(p) => setSelectedProject(p)}
                 />
               }
             />
             <Route
               path="/about"
-              element={<AboutPage onOpenConsultation={scrollToConsultation} />}
+              element={<AboutPage onOpenConsultation={handleOpenConsultation} />}
             />
             <Route
               path="/services"
-              element={<ServicesPage onOpenConsultation={scrollToConsultation} />}
+              element={<ServicesPage onOpenConsultation={handleOpenConsultation} />}
             />
             <Route
               path="/process"
-              element={<ProcessPage onOpenConsultation={scrollToConsultation} />}
+              element={<ProcessPage onOpenConsultation={handleOpenConsultation} />}
             />
             <Route
               path="/projects"
               element={
                 <ProjectsPage
                   onSelectProject={(p) => setSelectedProject(p)}
-                  onOpenConsultation={scrollToConsultation}
+                  onOpenConsultation={handleOpenConsultation}
                 />
               }
             />
             <Route
               path="/gallery"
-              element={<GalleryPage onOpenConsultation={scrollToConsultation} />}
+              element={<GalleryPage onOpenConsultation={handleOpenConsultation} />}
             />
             <Route
               path="/why-capsule"
-              element={<WhyCapsulePage onOpenConsultation={scrollToConsultation} />}
+              element={<WhyCapsulePage onOpenConsultation={handleOpenConsultation} />}
             />
             <Route path="/faq" element={<FAQPage />} />
             <Route
               path="/contact"
-              element={<ContactPage onOpenConsultation={scrollToConsultation} />}
+              element={<ContactPage onOpenConsultation={handleOpenConsultation} />}
             />
             {/* Fallback to Home */}
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -100,11 +117,11 @@ export const App: React.FC = () => {
         </main>
 
         {/* Footer with Routing Links */}
-        <Footer onOpenConsultation={scrollToConsultation} />
+        <Footer onOpenConsultation={() => handleOpenConsultation('Free Consultation')} />
 
         {/* Floating Interactive Utilities */}
         <WhatsAppButton />
-        <Chatbot onOpenConsultationModal={scrollToConsultation} />
+        <Chatbot onOpenConsultationModal={() => handleOpenConsultation('Book Free Consultation')} />
 
         {/* Project Lightbox Modal */}
         <ProjectModal
@@ -112,8 +129,15 @@ export const App: React.FC = () => {
           onClose={() => setSelectedProject(null)}
           onConsultation={() => {
             setSelectedProject(null);
-            scrollToConsultation();
+            handleOpenConsultation('Book Free Consultation');
           }}
+        />
+
+        {/* Unified 6-Field Enquiry Modal */}
+        <EnquiryModal
+          isOpen={isEnquiryOpen}
+          onClose={() => setIsEnquiryOpen(false)}
+          initialSource={enquirySource}
         />
       </div>
     </BrowserRouter>

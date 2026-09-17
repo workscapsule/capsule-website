@@ -12,7 +12,7 @@ import {
 import { companyConfig } from '../../config/company';
 
 interface HeroProps {
-  onOpenConsultation: () => void;
+  onOpenConsultation: (source?: any) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
           {/* Two Clean, Responsive CTA Buttons */}
           <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
             <button
-              onClick={onOpenConsultation}
+              onClick={() => onOpenConsultation('Book Free Consultation')}
               className="px-6 sm:px-8 py-3 sm:py-3.5 bg-brand-copper hover:bg-brand-copperLight text-white text-xs sm:text-sm font-bold tracking-widest uppercase rounded-full shadow-xl hover:shadow-brand-copper/40 transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer active:scale-95"
             >
               <span>BOOK FREE CONSULTATION</span>

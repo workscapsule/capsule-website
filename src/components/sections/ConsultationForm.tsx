@@ -1,367 +1,336 @@
 import React, { useState } from 'react';
 import { SectionHeader } from '../common/SectionHeader';
-import { LeadFormData } from '../../types';
-import { companyConfig } from '../../config/company';
+import { EnquiryFormData } from '../../types';
 import confetti from 'canvas-confetti';
-import { CheckCircle2, AlertCircle, Loader2, Phone, Calendar, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Loader2, Send, ShieldCheck } from 'lucide-react';
 
 export const ConsultationForm: React.FC = () => {
-  const [formData, setFormData] = useState<LeadFormData>({
-    fullName: '',
-    phone: '',
+  const [formData, setFormData] = useState<EnquiryFormData>({
+    firstName: '',
+    lastName: '',
+    mobileNumber: '',
+    altMobileNumber: '',
     email: '',
-    projectType: 'Construction',
-    consultationType: 'Free Consultation',
-    location: '',
-    budget: '15L - 30L',
-    preferredContact: 'WhatsApp',
-    description: '',
+    locationAddress: '',
+    source: 'Free Consultation',
   });
 
-  const [errors, setErrors] = useState<Partial<Record<keyof LeadFormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof EnquiryFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
-  const validate = () => {
-    const errs: Partial<Record<keyof LeadFormData, string>> = {};
-    if (!formData.fullName.trim()) errs.fullName = 'Please enter your full name';
-    
-    // Indian phone number regex
-    const phoneClean = formData.phone.replace(/\D/g, '');
-    if (!phoneClean || phoneClean.length < 10) {
-      errs.phone = 'Please enter a valid 10-digit phone number';
+  const validate = (): boolean => {
+    const errs: Partial<Record<keyof EnquiryFormData, string>> = {};
+
+    if (!formData.firstName.trim()) errs.firstName = 'First Name is required';
+    if (!formData.lastName.trim()) errs.lastName = 'Last Name is required';
+
+    const cleanMobile = formData.mobileNumber.replace(/\D/g, '');
+    if (!cleanMobile || cleanMobile.length < 10) {
+      errs.mobileNumber = 'Enter a valid 10-digit mobile number';
     }
 
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-      errs.email = 'Please enter a valid email address';
+    const cleanAlt = formData.altMobileNumber.replace(/\D/g, '');
+    if (!cleanAlt || cleanAlt.length < 10) {
+      errs.altMobileNumber = 'Enter a valid alternative 10-digit number';
     }
 
-    if (!formData.location.trim()) {
-      errs.location = 'Please mention your Bengaluru location (e.g., Hebbal, Indiranagar)';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errs.email = 'Email Address is required';
+    } else if (!emailRegex.test(formData.email.trim())) {
+      errs.email = 'Enter a valid email address';
+    }
+
+    if (!formData.locationAddress.trim()) {
+      errs.locationAddress = 'Location / Address is required';
     }
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setApiError(null);
+
     if (!validate()) return;
 
     setIsSubmitting(true);
 
-    // Simulate reliable form processing and storage
-    setTimeout(() => {
-      try {
-        const stored = JSON.parse(localStorage.getItem('capsule_leads') || '[]');
-        stored.push({
-          ...formData,
-          submittedAt: new Date().toISOString(),
-          id: `lead_${Date.now()}`
-        });
-        localStorage.setItem('capsule_leads', JSON.stringify(stored));
-      } catch (e) {
-        console.warn('Storage disabled', e);
+    try {
+      const response = await fetch('/api/send-enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to submit enquiry. Please try again.');
       }
 
       setIsSubmitting(false);
       setIsSuccess(true);
 
-      // Trigger celebratory confetti
       try {
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 90,
+          spread: 75,
           origin: { y: 0.6 },
-          colors: ['#B86D43', '#0A0A0A', '#F7F3ED', '#C59A6F']
+          colors: ['#B86D43', '#0A0A0A', '#F7F3ED', '#C59A6F'],
         });
-      } catch (err) {
-        // Safe fallback
-      }
-    }, 1000);
+      } catch (_) {}
+    } catch (err: any) {
+      setIsSubmitting(false);
+      setApiError(err.message || 'Something went wrong while connecting to our email service. Please try again.');
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      mobileNumber: '',
+      altMobileNumber: '',
+      email: '',
+      locationAddress: '',
+      source: 'Free Consultation',
+    });
+    setErrors({});
+    setIsSuccess(false);
+    setApiError(null);
   };
 
   return (
-    <section id="consultation" className="py-20 sm:py-28 bg-brand-ivory relative overflow-hidden border-t border-brand-border/60">
+    <section id="consultation" className="py-16 sm:py-24 bg-brand-ivory relative overflow-hidden border-t border-brand-border/60">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Form Header */}
         <SectionHeader
-          label="FREE CONSULTATION & FREE SITE VISIT"
+          label="FREE CONSULTATION & ESTIMATE"
           title="LET'S BUILD YOUR"
           highlight="VISION TOGETHER."
-          subtitle="Tell us about your space. Our senior project engineers will review your requirements, schedule a complimentary site inspection, and prepare a preliminary concept."
+          subtitle="Tell us about your space. Our senior project team will review your requirements and schedule a complimentary site inspection."
           centered
         />
 
         {/* Lead Form Card */}
-        <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-xl border border-brand-border relative">
-          
+        <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-xl border border-brand-border relative mt-8">
           {isSuccess ? (
-            <div className="py-12 text-center space-y-4 animate-reveal">
-              <div className="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto">
+            <div className="py-8 text-center space-y-4 animate-reveal">
+              <div className="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto shadow-inner">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
+
               <h3 className="text-2xl font-bold font-display uppercase tracking-tight text-brand-black">
-                REQUEST RECEIVED
+                ENQUIRY SUBMITTED!
               </h3>
-              <p className="text-sm text-brand-muted max-w-md mx-auto leading-relaxed">
-                Thank you, <strong>{formData.fullName}</strong>. Your request for a <strong>{formData.consultationType}</strong> in <strong>{formData.location}</strong> has been confirmed.
-              </p>
-              <p className="text-xs text-brand-copper font-medium">
-                Our team will contact you shortly via {formData.preferredContact}.
+
+              <div className="p-4 rounded-xl bg-brand-cream/60 border border-brand-copper/30 max-w-md mx-auto">
+                <p className="text-sm font-semibold text-brand-black leading-relaxed">
+                  Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.
+                </p>
+              </div>
+
+              <p className="text-xs text-brand-muted max-w-md mx-auto leading-relaxed pt-1">
+                Your enquiry details have been delivered directly to the <strong>Capsule Company</strong> official team. We will reach out to <strong>{formData.mobileNumber}</strong> or <strong>{formData.email}</strong> shortly.
               </p>
 
-              <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a
-                  href={`https://wa.me/${companyConfig.whatsappNumber}?text=${encodeURIComponent(`Hi Capsule Company, I just submitted a consultation request for ${formData.fullName} (${formData.projectType} in ${formData.location}).`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 bg-[#25D366] text-white text-xs font-bold tracking-widest uppercase rounded-full shadow hover:bg-[#1ebd59] transition-all"
-                >
-                  CHAT DIRECTLY ON WHATSAPP
-                </a>
-
+              <div className="pt-4">
                 <button
-                  onClick={() => {
-                    setIsSuccess(false);
-                    setFormData({
-                      fullName: '',
-                      phone: '',
-                      email: '',
-                      projectType: 'Construction',
-                      consultationType: 'Free Consultation',
-                      location: '',
-                      budget: '15L - 30L',
-                      preferredContact: 'WhatsApp',
-                      description: '',
-                    });
-                  }}
-                  className="px-6 py-3 bg-brand-cream text-brand-black text-xs font-bold tracking-widest uppercase rounded-full hover:bg-brand-ivory border border-brand-border transition-all"
+                  onClick={resetForm}
+                  className="px-6 py-2.5 bg-brand-black text-white text-xs font-bold tracking-widest uppercase rounded-full hover:bg-brand-copper transition-all shadow-md"
                 >
-                  SUBMIT ANOTHER REQUEST
+                  SUBMIT ANOTHER ENQUIRY
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              
-              {/* Consultation Type Selector Toggles */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 p-1.5 rounded-xl bg-brand-cream/70 border border-brand-border">
-                <button
-                  type="button"
-                  onClick={() => setFormData({ ...formData, consultationType: 'Free Consultation' })}
-                  className={`w-full py-2.5 px-4 rounded-lg text-xs font-bold tracking-wider uppercase transition-all ${
-                    formData.consultationType === 'Free Consultation'
-                      ? 'bg-brand-black text-white shadow-xs'
-                      : 'text-brand-muted hover:text-brand-black'
-                  }`}
-                >
-                  REQUEST FREE CONSULTATION
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setFormData({ ...formData, consultationType: 'Free Site Visit' })}
-                  className={`w-full py-2.5 px-4 rounded-lg text-xs font-bold tracking-wider uppercase transition-all ${
-                    formData.consultationType === 'Free Site Visit'
-                      ? 'bg-brand-copper text-white shadow-xs'
-                      : 'text-brand-muted hover:text-brand-black'
-                  }`}
-                >
-                  REQUEST FREE SITE VISIT
-                </button>
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              {apiError && (
+                <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{apiError}</span>
+                </div>
+              )}
 
-              {/* Row 1: Name & Phone */}
+              {/* Row 1: First Name & Last Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                    Full Name <span className="text-brand-copper">*</span>
+                    First Name <span className="text-brand-copper">*</span>
                   </label>
                   <input
                     type="text"
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    placeholder="Enter your name"
+                    required
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    placeholder="Enter first name"
                     className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors ${
-                      errors.fullName ? 'border-red-500 bg-red-50/20' : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
+                      errors.firstName
+                        ? 'border-red-500 bg-red-50/20'
+                        : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
                     }`}
                   />
-                  {errors.fullName && (
+                  {errors.firstName && (
                     <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.fullName}
+                      <AlertCircle className="w-3 h-3 shrink-0" /> {errors.firstName}
                     </p>
                   )}
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                    Phone Number <span className="text-brand-copper">*</span>
+                    Last Name <span className="text-brand-copper">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    placeholder="Enter last name"
+                    className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors ${
+                      errors.lastName
+                        ? 'border-red-500 bg-red-50/20'
+                        : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
+                    }`}
+                  />
+                  {errors.lastName && (
+                    <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3 shrink-0" /> {errors.lastName}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Row 2: Mobile Number & Alternative Mobile Number */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
+                    Mobile Number <span className="text-brand-copper">*</span>
                   </label>
                   <input
                     type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    required
+                    value={formData.mobileNumber}
+                    onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
                     placeholder="+91 98765 43210"
                     className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors ${
-                      errors.phone ? 'border-red-500 bg-red-50/20' : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
+                      errors.mobileNumber
+                        ? 'border-red-500 bg-red-50/20'
+                        : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
                     }`}
                   />
-                  {errors.phone && (
+                  {errors.mobileNumber && (
                     <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.phone}
+                      <AlertCircle className="w-3 h-3 shrink-0" /> {errors.mobileNumber}
                     </p>
                   )}
                 </div>
-              </div>
 
-              {/* Row 2: Email & Bengaluru Location */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                    Email Address
+                    Alternative Mobile Number <span className="text-brand-copper">*</span>
                   </label>
                   <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="you@domain.com (optional)"
+                    type="tel"
+                    required
+                    value={formData.altMobileNumber}
+                    onChange={(e) => setFormData({ ...formData, altMobileNumber: e.target.value })}
+                    placeholder="+91 91234 56789"
                     className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors ${
-                      errors.email ? 'border-red-500 bg-red-50/20' : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
+                      errors.altMobileNumber
+                        ? 'border-red-500 bg-red-50/20'
+                        : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
                     }`}
                   />
-                  {errors.email && (
+                  {errors.altMobileNumber && (
                     <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.email}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                    Project Location in Bengaluru <span className="text-brand-copper">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="e.g., Hebbal, Yelahanka, Indiranagar"
-                    className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors ${
-                      errors.location ? 'border-red-500 bg-red-50/20' : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
-                    }`}
-                  />
-                  {errors.location && (
-                    <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.location}
+                      <AlertCircle className="w-3 h-3 shrink-0" /> {errors.altMobileNumber}
                     </p>
                   )}
                 </div>
               </div>
 
-              {/* Row 3: Project Type & Approximate Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                    Project Type
-                  </label>
-                  <select
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-xl border border-brand-border focus:border-brand-copper bg-brand-cream/30 text-sm focus:outline-none"
-                  >
-                    <option value="Construction">Construction & Civil Works</option>
-                    <option value="Interior">Turnkey Interior Design & Execution</option>
-                    <option value="Modular Kitchen">Customized Modular Kitchen</option>
-                    <option value="Carpentry">Carpentry & Custom Wardrobes</option>
-                    <option value="Exterior">Exterior Facade & Elevations</option>
-                    <option value="Renovation">Complete Home / Flat Renovation</option>
-                    <option value="Other">Other Custom Space Requirement</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                    Approximate Budget
-                  </label>
-                  <select
-                    value={formData.budget}
-                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-brand-border focus:border-brand-copper bg-brand-cream/30 text-sm focus:outline-none"
-                  >
-                    <option value="Under 10L">Under ₹10 Lakhs</option>
-                    <option value="10L - 25L">₹10 Lakhs - ₹25 Lakhs</option>
-                    <option value="25L - 50L">₹25 Lakhs - ₹50 Lakhs</option>
-                    <option value="50L - 1 Cr">₹50 Lakhs - ₹1 Crore</option>
-                    <option value="Above 1 Cr">Above ₹1 Crore</option>
-                    <option value="To Be Discussed">Prefer to discuss on site</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Row 4: Preferred Contact Method */}
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-2">
-                  Preferred Contact Method
-                </label>
-                <div className="flex flex-wrap gap-4">
-                  {(['WhatsApp', 'Phone', 'Email'] as const).map((method) => (
-                    <label key={method} className="flex items-center gap-2 cursor-pointer text-xs font-medium text-brand-black">
-                      <input
-                        type="radio"
-                        name="preferredContact"
-                        checked={formData.preferredContact === method}
-                        onChange={() => setFormData({ ...formData, preferredContact: method })}
-                        className="accent-brand-copper w-4 h-4"
-                      />
-                      <span>{method}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Row 5: Project Description */}
+              {/* Row 3: Email Address */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
-                  Project Description or Specific Needs
+                  Email Address <span className="text-brand-copper">*</span>
                 </label>
-                <textarea
-                  rows={3}
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="e.g., 3BHK villa construction, modular kitchen with island, 20-year-old home renovation..."
-                  className="w-full px-4 py-3 rounded-xl border border-brand-border focus:border-brand-copper bg-brand-cream/30 text-sm focus:outline-none resize-none"
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="your.email@example.com"
+                  className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors ${
+                    errors.email
+                      ? 'border-red-500 bg-red-50/20'
+                      : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3 shrink-0" /> {errors.email}
+                  </p>
+                )}
               </div>
 
-              {/* Submit Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+              {/* Row 4: Location / Address */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1.5">
+                  Location / Address <span className="text-brand-copper">*</span>
+                </label>
+                <textarea
+                  rows={2}
+                  required
+                  value={formData.locationAddress}
+                  onChange={(e) => setFormData({ ...formData, locationAddress: e.target.value })}
+                  placeholder="e.g., #42, 3rd Cross, Indiranagar / Hebbal, Bengaluru"
+                  className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none transition-colors resize-none ${
+                    errors.locationAddress
+                      ? 'border-red-500 bg-red-50/20'
+                      : 'border-brand-border focus:border-brand-copper bg-brand-cream/30'
+                  }`}
+                />
+                {errors.locationAddress && (
+                  <p className="text-[11px] text-red-500 mt-1 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3 shrink-0" /> {errors.locationAddress}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-2">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-4 bg-brand-black hover:bg-brand-copper text-white text-xs sm:text-sm font-bold tracking-widest uppercase rounded-full shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-xl bg-brand-black text-white text-xs font-extrabold uppercase tracking-widest hover:bg-brand-copper transition-all duration-300 flex items-center justify-center gap-2 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>PROCESSING...</span>
+                      <Loader2 className="w-4 h-4 animate-spin text-brand-copper" />
+                      <span>SUBMITTING ENQUIRY...</span>
                     </>
                   ) : (
                     <>
-                      <span>{formData.consultationType === 'Free Site Visit' ? 'REQUEST FREE SITE VISIT' : 'REQUEST FREE CONSULTATION'}</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span>SUBMIT ENQUIRY</span>
+                      <Send className="w-4 h-4 text-brand-copper group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
                 </button>
 
-                <div className="flex items-center gap-2 text-xs text-brand-muted">
+                <div className="flex items-center justify-center gap-2 text-xs text-brand-muted mt-3">
                   <ShieldCheck className="w-4 h-4 text-brand-copper" />
-                  <span>No obligation • 100% Free consultation</span>
+                  <span>Sent directly to Capsule Company official email inbox. Zero spam guaranteed.</span>
                 </div>
               </div>
-
             </form>
           )}
-
         </div>
       </div>
     </section>
