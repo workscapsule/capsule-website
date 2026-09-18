@@ -6,8 +6,7 @@ import {
   Award, 
   Phone, 
   ChevronRight,
-  Sparkles,
-  CheckCircle2
+  Sparkles
 } from 'lucide-react';
 import { companyConfig } from '../../config/company';
 
@@ -68,40 +67,42 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
           
           {/* Headline with Luxury Copper Gradient Accent */}
           <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-extrabold text-white tracking-tight uppercase leading-[1.12] drop-shadow-2xl">
-            CRAFTING SPACES. <br />
+            BUILDING SPACES. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-copper via-brand-copperLight to-amber-300">
-              CREATING EXPERIENCES.
+              CREATING VALUE.
             </span>
           </h1>
 
-          {/* Aesthetic Subtitle tailored for client appeal */}
-          <p className="text-sm sm:text-base md:text-lg text-gray-200 font-medium leading-relaxed max-w-xl drop-shadow-md">
-            Turnkey Construction &amp; Bespoke Luxury Interiors. Delivering architectural elegance, transparent pricing, and master craftsmanship across Bengaluru.
-          </p>
+          {/* Subtitle & Tagline */}
+          <div className="space-y-1.5 max-w-xl drop-shadow-md">
+            <p className="text-sm sm:text-base md:text-lg text-white font-semibold tracking-wide">
+              Construction • Interiors • Exteriors
+            </p>
+            <p className="text-sm sm:text-base md:text-lg text-gray-200 italic font-medium leading-relaxed">
+              One team for your complete project.
+            </p>
+          </div>
 
-          {/* Client Value Highlights */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 text-xs sm:text-sm text-gray-300 font-medium">
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-brand-copper shrink-0" />
-              <span>100% Fixed-Price BOQ</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-brand-copper shrink-0" />
-              <span>10-Year Warranty</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-brand-copper shrink-0" />
-              <span>On-Time Handover</span>
-            </div>
+          {/* Service Scope */}
+          <div className="flex flex-wrap items-center gap-x-2.5 sm:gap-x-3 gap-y-1.5 pt-0.5 text-xs sm:text-sm text-gray-300 font-medium">
+            <span>Construction</span>
+            <span className="text-brand-copper">•</span>
+            <span>Civil Works</span>
+            <span className="text-brand-copper">•</span>
+            <span>Interiors</span>
+            <span className="text-brand-copper">•</span>
+            <span>Exteriors</span>
+            <span className="text-brand-copper">•</span>
+            <span>Renovation</span>
           </div>
 
           {/* Two Clean, Responsive CTA Buttons */}
           <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
             <button
-              onClick={() => onOpenConsultation('Book Free Consultation')}
+              onClick={() => onOpenConsultation('Book A Consultation')}
               className="px-6 sm:px-8 py-3 sm:py-3.5 bg-brand-copper hover:bg-brand-copperLight text-white text-xs sm:text-sm font-bold tracking-widest uppercase rounded-full shadow-xl hover:shadow-brand-copper/40 transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer active:scale-95"
             >
-              <span>BOOK FREE CONSULTATION</span>
+              <span>BOOK A CONSULTATION</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 

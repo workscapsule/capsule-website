@@ -46,41 +46,45 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             <h3 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-white">
               {project.title}
             </h3>
-            <div className="flex items-center gap-1.5 text-xs text-gray-300 mt-1">
-              <MapPin className="w-3.5 h-3.5 text-brand-copper" />
-              <span>{project.location}</span>
-            </div>
+            {project.location ? (
+              <div className="flex items-center gap-1.5 text-xs text-gray-300 mt-1">
+                <MapPin className="w-3.5 h-3.5 text-brand-copper" />
+                <span>{project.location}</span>
+              </div>
+            ) : null}
           </div>
         </div>
 
         {/* Content Body */}
         <div className="p-6 sm:p-8 space-y-6">
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-3 gap-3 p-3.5 rounded-xl bg-brand-cream border border-brand-border text-center">
-            {project.area && (
-              <div>
-                <span className="text-[10px] uppercase font-bold text-brand-muted tracking-wider block">Scope Area</span>
-                <span className="text-sm font-bold text-brand-black">{project.area}</span>
-              </div>
-            )}
-            {project.duration && (
-              <div>
-                <span className="text-[10px] uppercase font-bold text-brand-muted tracking-wider block">Timeline</span>
-                <span className="text-sm font-bold text-brand-black">{project.duration}</span>
-              </div>
-            )}
-            {project.clientType && (
-              <div>
-                <span className="text-[10px] uppercase font-bold text-brand-muted tracking-wider block">Space Type</span>
-                <span className="text-sm font-bold text-brand-black">{project.clientType}</span>
-              </div>
-            )}
-          </div>
+          {(project.area || project.duration || project.clientType) ? (
+            <div className="grid grid-cols-3 gap-3 p-3.5 rounded-xl bg-brand-cream border border-brand-border text-center">
+              {project.area && (
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-brand-muted tracking-wider block">Scope Area</span>
+                  <span className="text-sm font-bold text-brand-black">{project.area}</span>
+                </div>
+              )}
+              {project.duration && (
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-brand-muted tracking-wider block">Timeline</span>
+                  <span className="text-sm font-bold text-brand-black">{project.duration}</span>
+                </div>
+              )}
+              {project.clientType && (
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-brand-muted tracking-wider block">Space Type</span>
+                  <span className="text-sm font-bold text-brand-black">{project.clientType}</span>
+                </div>
+              )}
+            </div>
+          ) : null}
 
           {/* Description */}
           <div>
             <h4 className="text-xs font-bold tracking-widest text-brand-copper uppercase mb-2">
-              Project Overview
+              {project.conceptLabel || 'Project Overview'}
             </h4>
             <p className="text-sm text-brand-black/85 leading-relaxed">
               {project.description}
@@ -88,24 +92,26 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           </div>
 
           {/* Scope of Work */}
-          <div>
-            <h4 className="text-xs font-bold tracking-widest text-brand-copper uppercase mb-3">
-              Services & Execution Scope
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {project.scope.map((item, i) => (
-                <div key={i} className="flex items-start gap-2 text-xs text-brand-black/90">
-                  <CheckCircle2 className="w-4 h-4 text-brand-copper shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </div>
-              ))}
+          {project.scope && project.scope.length > 0 ? (
+            <div>
+              <h4 className="text-xs font-bold tracking-widest text-brand-copper uppercase mb-3">
+                {project.scopeLabel || 'Services & Execution Scope'}
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {project.scope.map((item, i) => (
+                  <div key={i} className="flex items-start gap-2 text-xs text-brand-black/90">
+                    <CheckCircle2 className="w-4 h-4 text-brand-copper shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           {/* Modal Footer CTA */}
           <div className="pt-4 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-3">
             <span className="text-xs text-brand-muted">
-              Want a similar space designed and executed in Bengaluru?
+              {project.ctaPrompt || 'Want a similar space designed and executed in Bengaluru?'}
             </span>
             <button
               onClick={() => {

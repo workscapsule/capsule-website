@@ -19,13 +19,18 @@ export interface ProjectItem {
   title: string;
   category: 'CONSTRUCTION' | 'INTERIORS' | 'EXTERIORS';
   categoryLabel: string;
-  location: string;
+  location?: string;
   image: string;
   scope: string[];
   description: string;
+  cardDescription?: string;
   duration?: string;
   area?: string;
   clientType?: string;
+  ctaText?: string;
+  conceptLabel?: string;
+  scopeLabel?: string;
+  ctaPrompt?: string;
 }
 
 export interface FAQItem {

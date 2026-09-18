@@ -101,10 +101,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject, onO
 
                 {/* Location */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs">
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-brand-copper" />
-                    <span className="font-semibold">{project.location}</span>
-                  </div>
+                  {project.location ? (
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-brand-copper" />
+                      <span className="font-semibold">{project.location}</span>
+                    </div>
+                  ) : <div />}
                   {project.area && (
                     <span className="px-2 py-0.5 rounded bg-white/20 backdrop-blur-xs text-[11px] font-mono">
                       {project.area}

@@ -3,64 +3,55 @@ import { ProjectItem } from '../types';
 export const projectsData: ProjectItem[] = [
   {
     id: 'project-hebbal-residence',
-    title: 'Contemporary Villa Architecture & Civil Build',
+    title: 'Contemporary Villa Design & Construction',
     category: 'CONSTRUCTION',
     categoryLabel: 'Civil & Construction',
-    location: 'Hebbal Kempapura, Bengaluru',
+    location: '',
     image: '/assets/gallery/gallery-elevation.jpg',
     scope: [
-      'Turnkey Architectural Construction',
-      'RCC Structure & Brick Masonry',
-      'Thermal Insulated Glass Enclosures',
-      'Structural Wood & Aluminium Cladding'
+      'Civil & Construction',
+      'RCC & Brick Work',
+      'Flooring & Finishing',
+      'Electrical & Plumbing',
+      'Interior & Exterior Works'
     ],
-    description: 'A multi-level contemporary residential villa constructed with reinforced concrete, expansive glass elevations, and integrated terrace greens in Hebbal Kempapura.',
-    duration: '11 Months',
-    area: '4,800 sq.ft',
-    clientType: 'Private Residence'
+    description: 'A modern residential villa concept focused on clean architecture, functional spaces and quality construction.',
+    cardDescription: 'A modern residential concept showcasing contemporary architecture, clean lines and quality construction.',
+    ctaText: 'VIEW DESIGN',
+    conceptLabel: 'PROJECT CONCEPT',
+    scopeLabel: 'OUR SCOPE',
+    ctaPrompt: 'Planning a similar space in Bengaluru?'
   },
   {
     id: 'project-yelahanka-penthouse',
-    title: 'Bespoke Modern Modular Kitchen & Living',
+    title: 'Modular Kitchen & Living Space',
     category: 'INTERIORS',
     categoryLabel: 'Turnkey Interiors',
-    location: 'Yelahanka, Bengaluru',
+    location: '',
     image: '/assets/gallery/gallery-kitchen.jpg',
-    scope: [
-      'Custom Island Modular Kitchen',
-      'Soft-close Anti-scratch Cabinets',
-      'Fluted Wood Island with Warm Underglow',
-      'Italian Calacatta Quartz Countertop'
-    ],
-    description: 'Complete luxury kitchen and living area transformation featuring handleless olive green cabinetry, built-in smart appliances, and custom lighting.',
-    duration: '45 Days',
-    area: '2,200 sq.ft',
-    clientType: 'Penthouse Apartment'
+    scope: [],
+    description: 'A modern interior concept combining functional kitchen design, smart storage and comfortable living spaces.',
+    cardDescription: 'A modern interior concept combining functional kitchen design, smart storage and comfortable living spaces.',
+    ctaText: 'VIEW CONCEPT'
   },
   {
     id: 'project-indiranagar-duplex',
-    title: 'Artisanal Carpentry & Media Wall Suite',
+    title: 'Custom Carpentry & Media Wall',
     category: 'INTERIORS',
     categoryLabel: 'Carpentry & Millwork',
-    location: 'Indiranagar, Bengaluru',
+    location: '',
     image: '/assets/gallery/gallery-glassdoors.jpg',
-    scope: [
-      'Acoustic Wooden Slat Feature Wall',
-      'Concealed Ambient LED Floating Console',
-      'Custom Floor-to-Ceiling Wardrobes',
-      'Solid Teakwood Pivot Door'
-    ],
-    description: 'Meticulously crafted custom woodwork including an architectural fluted TV wall, illuminated display alcoves, and premium wardrobe systems.',
-    duration: '35 Days',
-    area: '1,800 sq.ft',
-    clientType: 'Duplex Home'
+    scope: [],
+    description: 'Beautifully designed and expertly crafted woodwork for your home. From TV units and media walls to custom storage and interiors, we create spaces that are practical, stylish, and made for you.',
+    cardDescription: 'Beautifully designed and expertly crafted woodwork for your home. From TV units and media walls to custom storage and interiors, we create spaces that are practical, stylish, and made for you.',
+    ctaText: 'VIEW PROJECT'
   },
   {
     id: 'project-outer-ring-commercial',
     title: 'Corporate Office Interior & Glass Partitioning',
     category: 'INTERIORS',
     categoryLabel: 'Commercial Fitout',
-    location: 'Outer Ring Road, Bengaluru',
+    location: '',
     image: '/assets/gallery/gallery-office.jpg',
     scope: [
       'Acoustic Black Aluminum Glass Partitions',
@@ -68,17 +59,14 @@ export const projectsData: ProjectItem[] = [
       'Suspended Linear Architectural Lighting',
       'Commercial Epoxy & Vitrified Flooring'
     ],
-    description: 'High-density commercial workspace designed for agile tech teams, featuring transparent glass conference suites and collaborative open-plan zones.',
-    duration: '60 Days',
-    area: '6,500 sq.ft',
-    clientType: 'Tech Enterprise'
+    description: 'High-density commercial workspace designed for agile tech teams, featuring transparent glass conference suites and collaborative open-plan zones.'
   },
   {
     id: 'project-sahakar-nagar-elevation',
     title: 'Modern Concrete & Timber Elevation',
     category: 'EXTERIORS',
     categoryLabel: 'Exterior & Facade',
-    location: 'Sahakar Nagar, Bengaluru',
+    location: '',
     image: '/assets/gallery/gallery-facade.jpg',
     scope: [
       'Exposed Concrete Texture Cladding',
@@ -86,27 +74,25 @@ export const projectsData: ProjectItem[] = [
       'Structural Slim Aluminum Window Framing',
       'Cantilevered Balcony Safety Railings'
     ],
-    description: 'A striking architectural exterior elevation utilizing natural materials, geometric overhangs, and recessed facade lighting.',
-    duration: '4 Months',
-    area: '3,400 sq.ft',
-    clientType: 'Residential Elevation'
+    description: 'A striking architectural exterior elevation utilizing natural materials, geometric overhangs, and recessed facade lighting.'
   },
   {
     id: 'project-whitefield-turnkey',
-    title: 'Complete Home Renovation & Marble Laying',
+    title: 'Home Renovation & Marble Work',
     category: 'CONSTRUCTION',
     categoryLabel: 'Renovation & Finishes',
-    location: 'Whitefield, Bengaluru',
+    location: '',
     image: '/assets/gallery/gallery-renovation.jpg',
     scope: [
-      'High-precision Italian Marble Laying',
-      'False Ceiling with Indirect Warm Cove Lights',
-      'Complete Plumbing & Concealed Re-wiring',
-      'Wall Strengthening & Micro-cement Finishes'
+      'Home Renovation',
+      'Marble & Tile Work',
+      'Plumbing & Electrical Work',
+      'False Ceiling & Finishing'
     ],
-    description: 'Full-scale interior and structural renovation transforming a 15-year-old property into a modern sanctuary with laser-aligned marble flooring.',
-    duration: '3 Months',
-    area: '2,900 sq.ft',
-    clientType: 'Full House Renovation'
+    description: 'A modern home renovation concept combining quality marble work, interior upgrades and practical finishing solutions.',
+    cardDescription: 'A modern home renovation concept combining quality marble work, interior upgrades and practical finishing solutions.',
+    conceptLabel: 'PROJECT CONCEPT',
+    scopeLabel: 'SCOPE OF WORK',
+    ctaPrompt: 'Planning a similar renovation in Bengaluru?'
   }
 ];
