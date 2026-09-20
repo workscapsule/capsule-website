@@ -7,7 +7,8 @@ import {
   Layers, 
   Maximize, 
   ShieldCheck, 
-  Palette 
+  Palette,
+  Phone
 } from 'lucide-react';
 import { companyConfig } from '../../config/company';
 
@@ -60,7 +61,7 @@ export const ModularKitchenFeature: React.FC<ModularKitchenFeatureProps> = ({ on
               <img
                 src="/assets/creatives/img7.jpeg"
                 alt="Customized Modular Kitchen by Capsule Company"
-                className="relative z-10 w-auto h-auto max-w-full max-h-[580px] object-contain rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
+                className="relative z-10 w-full h-auto aspect-[3/2] object-cover object-center rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
                 loading="lazy"
               />
             </div>
@@ -112,9 +113,11 @@ export const ModularKitchenFeature: React.FC<ModularKitchenFeatureProps> = ({ on
 
               <a
                 href={`tel:${companyConfig.phoneRaw}`}
-                className="px-5 py-3.5 bg-brand-cream hover:bg-white text-brand-black border border-brand-border hover:border-brand-copper text-xs font-bold tracking-widest uppercase rounded-full transition-all text-center"
+                className="px-5 py-3.5 bg-brand-cream hover:bg-white text-brand-black border border-brand-border hover:border-brand-copper text-xs font-bold tracking-wider uppercase rounded-full transition-all text-center whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5"
+                title={`Call ${companyConfig.phone}`}
               >
-                CALL +91 96321 24422
+                <Phone className="w-3.5 h-3.5 text-brand-copper shrink-0" />
+                <span className="whitespace-nowrap">CALL {companyConfig.phone}</span>
               </a>
             </div>
 

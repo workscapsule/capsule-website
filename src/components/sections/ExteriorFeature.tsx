@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionHeader } from '../common/SectionHeader';
-import { ArrowRight, ShieldCheck, Sun, Umbrella, Layers, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sun, Umbrella, Layers, Sparkles, Phone } from 'lucide-react';
 import { companyConfig } from '../../config/company';
 
 interface ExteriorFeatureProps {
@@ -57,9 +57,11 @@ export const ExteriorFeature: React.FC<ExteriorFeatureProps> = ({ onOpenConsulta
 
               <a
                 href={`tel:${companyConfig.phoneRaw}`}
-                className="px-5 py-3.5 bg-brand-cream hover:bg-white text-brand-black border border-brand-border text-xs font-bold tracking-widest uppercase rounded-full transition-all text-center"
+                className="px-5 py-3.5 bg-brand-cream hover:bg-white text-brand-black border border-brand-border hover:border-brand-copper text-xs font-bold tracking-wider uppercase rounded-full transition-all text-center whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5"
+                title={`Call ${companyConfig.phone}`}
               >
-                CALL +91 96321 24422
+                <Phone className="w-3.5 h-3.5 text-brand-copper shrink-0" />
+                <span className="whitespace-nowrap">CALL {companyConfig.phone}</span>
               </a>
             </div>
           </div>
@@ -74,8 +76,8 @@ export const ExteriorFeature: React.FC<ExteriorFeatureProps> = ({ onOpenConsulta
               <div className="absolute inset-0 bg-brand-black/30 backdrop-blur-xs pointer-events-none" />
               <img
                 src="/assets/creatives/img8.jpeg"
-                alt="Contemporary Villa Model and Architecture"
-                className="relative z-10 w-auto h-auto max-w-full max-h-[580px] object-contain rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
+                alt="Contemporary Indian Style Villa Exterior and Facade"
+                className="relative z-10 w-full h-auto aspect-[16/9] object-cover object-center rounded-xl shadow-lg border border-white/10 group-hover:scale-[1.01] transition-transform duration-500"
                 loading="lazy"
               />
             </div>

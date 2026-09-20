@@ -85,32 +85,32 @@ export const WhyCapsule: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/gallery/gallery-electrical.jpg"
-                alt="Craftsmanship and Accuracy"
+                src="/assets/why-capsule/why-01-material-selection.jpg"
+                alt="Interior material & color selection"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </div>
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/gallery/gallery-marble.jpg"
-                alt="Electrical and Plumbing Supervision"
+                src="/assets/why-capsule/why-02-luxury-exterior.jpg"
+                alt="Modern luxury exterior"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </div>
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/gallery/gallery-renovation.jpg"
-                alt="Precision Marble and Flooring"
+                src="/assets/why-capsule/why-03-project-discussion.jpg"
+                alt="Client–designer project discussion"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </div>
             <div className="rounded-xl overflow-hidden h-36 bg-brand-black">
               <img
-                src="/assets/gallery/gallery-consultation.jpg"
-                alt="Client Consultation & Material Selection"
+                src="/assets/why-capsule/why-04-luxury-living.jpg"
+                alt="Finished luxury living room"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />

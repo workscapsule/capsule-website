@@ -84,12 +84,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           <div className="hidden lg:flex items-center gap-2.5 xl:gap-3 shrink-0">
             <a
               href={`tel:${companyConfig.phoneRaw}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-black hover:text-brand-copper border border-brand-border hover:border-brand-copper/50 rounded-full transition-all bg-white/60"
-              title="Call Capsule Company"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-brand-black hover:text-brand-copper border border-brand-border hover:border-brand-copper/50 rounded-full transition-all bg-white/60 whitespace-nowrap shrink-0"
+              title={`Call Capsule Company: ${companyConfig.phone}`}
             >
-              <Phone className="w-3.5 h-3.5 text-brand-copper" />
-              <span className="hidden xl:inline">{companyConfig.phone}</span>
-              <span className="xl:hidden">Call</span>
+              <Phone className="w-3.5 h-3.5 text-brand-copper shrink-0" />
+              <span className="whitespace-nowrap">{companyConfig.phone}</span>
             </a>
 
             <button
@@ -104,11 +103,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           <div className="flex xl:hidden items-center gap-2">
             <a
               href={`tel:${companyConfig.phoneRaw}`}
-              className="p-2 sm:px-3 sm:py-1.5 rounded-full bg-white border border-brand-border text-brand-black hover:text-brand-copper active:scale-95 transition-all flex items-center gap-1.5"
-              aria-label="Call Capsule Company"
+              className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full bg-white border border-brand-border text-brand-black hover:text-brand-copper active:scale-95 transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 text-[11px] sm:text-xs font-semibold"
+              aria-label={`Call ${companyConfig.phone}`}
+              title={`Call ${companyConfig.phone}`}
             >
-              <Phone className="w-4 h-4 text-brand-copper" />
-              <span className="hidden sm:inline text-xs font-semibold">{companyConfig.phone}</span>
+              <Phone className="w-3.5 h-3.5 text-brand-copper shrink-0" />
+              <span className="whitespace-nowrap">{companyConfig.phone}</span>
             </a>
 
             <button

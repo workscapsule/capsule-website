@@ -31,7 +31,7 @@ export const CarpentryFeature: React.FC<CarpentryFeatureProps> = ({ onOpenConsul
       title: 'CUSTOM FURNITURE',
       desc: 'Fluted TV wall consoles, dining sets, acoustic paneling, and bespoke storage.',
       tag: 'Custom Work',
-      image: '/assets/gallery/gallery-living.jpg',
+      image: '/assets/gallery/custom-furniture.jpg',
     },
   ];
 
@@ -76,7 +76,7 @@ export const CarpentryFeature: React.FC<CarpentryFeatureProps> = ({ onOpenConsul
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   loading="lazy"
                 />
                 <span className="absolute top-3 left-3 text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded bg-brand-black/80 text-white backdrop-blur-xs">
@@ -94,9 +94,8 @@ export const CarpentryFeature: React.FC<CarpentryFeatureProps> = ({ onOpenConsul
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-brand-border/60 flex items-center justify-between text-xs font-semibold text-brand-black">
-                  <span>Bengaluru Millwork</span>
-                  <span className="text-brand-copper font-bold">Capsule Spec</span>
+                <div className="mt-4 pt-3 border-t border-brand-border/60 flex items-center text-xs font-semibold text-brand-muted">
+                  <span>Bangalore</span>
                 </div>
               </div>
             </div>

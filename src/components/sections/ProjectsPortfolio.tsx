@@ -78,11 +78,12 @@ export const ProjectsPortfolio: React.FC<ProjectsPortfolioProps> = ({
               className="group cursor-pointer rounded-2xl overflow-hidden bg-brand-ivory border border-brand-border hover:border-brand-copper transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col"
             >
               {/* Image Container with Hover Zoom */}
-              <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-black">
+              <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-ivory">
                 <img
                   src={withAssetVersion(project.image)}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-100"
+                  style={{ imageRendering: '-webkit-optimize-contrast' }}
                   loading="lazy"
                 />
 

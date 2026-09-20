@@ -80,32 +80,32 @@ export const AboutUs: React.FC<AboutUsProps> = ({ onOpenConsultation }) => {
           {/* Right Column: Architectural Photography Grid matching img2 */}
           <div className="lg:col-span-6">
             <div className="grid grid-cols-12 gap-3 sm:gap-4">
-              {/* Main Feature Image */}
+              {/* Main Feature Image: Modern Residential & Exterior Architecture */}
               <div className="col-span-12 rounded-2xl overflow-hidden shadow-lg border border-brand-border h-64 sm:h-80 bg-brand-black group">
                 <img
-                  src="/assets/gallery/gallery-elevation.jpg"
-                  alt="Capsule Company Contemporary Architecture and Engineering"
-                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
+                  src="/assets/about/about-exterior-architecture.jpg"
+                  alt="Capsule Company Modern Residential Architecture & Exterior Design"
+                  className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700"
                   loading="lazy"
                 />
               </div>
 
-              {/* Supporting Image 1: Precision Finishes */}
+              {/* Supporting Image 1: Premium Interior Design */}
               <div className="col-span-6 rounded-xl overflow-hidden shadow-md border border-brand-border h-40 sm:h-48 bg-brand-black group">
                 <img
-                  src="/assets/gallery/gallery-marble.jpg"
-                  alt="High Precision Marble and Surface Finishes"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src="/assets/about/about-premium-interior.jpg"
+                  alt="Capsule Company Premium Interior Design & Living Space"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
               </div>
 
-              {/* Supporting Image 2: Architectural Facade */}
+              {/* Supporting Image 2: Construction & Project Execution */}
               <div className="col-span-6 rounded-xl overflow-hidden shadow-md border border-brand-border h-40 sm:h-48 bg-brand-black group">
                 <img
-                  src="/assets/gallery/gallery-facade.jpg"
-                  alt="Contemporary Residential Facade"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src="/assets/about/about-construction-execution.jpg"
+                  alt="Capsule Company Engineering & Construction Project Execution"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
               </div>
